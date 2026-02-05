@@ -1,38 +1,64 @@
 export default function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-center">
-      {/* Background with overlay */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-concrete-900/80 via-concrete-900/70 to-concrete-900/80 z-10" />
-        {/* Simple floor texture placeholder */}
-        <div className="absolute inset-0 bg-concrete-700">
-          <div className="absolute inset-0 opacity-20" style={{
-            backgroundImage: `linear-gradient(45deg, #FF8A1A 25%, transparent 25%, transparent 75%, #FF8A1A 75%, #FF8A1A),
-                              linear-gradient(45deg, #FF8A1A 25%, transparent 25%, transparent 75%, #FF8A1A 75%, #FF8A1A)`,
-            backgroundSize: '60px 60px',
-            backgroundPosition: '0 0, 30px 30px'
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/85 via-dark-900/75 to-dark-950/90 z-10" />
+        <div className="absolute inset-0 bg-dark-800">
+          {/* Subtle texture */}
+          <div className="absolute inset-0 opacity-[0.06]" style={{
+            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+            backgroundSize: '32px 32px'
           }} />
         </div>
       </div>
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-          바닥미장 전문
-          <br />
-          <span className="text-accent">대성몰탈</span>
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-5 py-2 mb-8">
+          <div className="w-2 h-2 bg-accent rounded-full" />
+          <span className="text-cream-300 text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
+        </div>
+
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
+          창성바닥미장
         </h1>
 
-        <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10">
-          수도권 바닥 시공 / 현장 견적 무료
+        <p className="text-lg md:text-xl text-cream-300/80 max-w-xl mx-auto mb-4 leading-relaxed">
+          에폭시 · 셀프레벨링 · 폴리싱 · 우레탄방수
+        </p>
+        <p className="text-base text-cream-400/60 mb-10">
+          수도권 전 지역 · 현장 방문 견적 무료
         </p>
 
-        <a
-          href="#contact"
-          className="inline-block bg-accent hover:bg-accent-dark text-white px-10 py-4 rounded font-bold text-lg transition-all"
-        >
-          견적 문의하기
-        </a>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="tel:010-5535-7129"
+            className="inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg shadow-accent/20"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            010-5535-7129
+          </a>
+          <a
+            href="#portfolio"
+            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border border-cream-300/30 hover:border-white/50 px-8 py-4 rounded-lg font-medium transition-all"
+          >
+            시공 사례 보기
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+        <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-white/40 rounded-full mt-2 animate-bounce" />
+        </div>
       </div>
     </section>
   )

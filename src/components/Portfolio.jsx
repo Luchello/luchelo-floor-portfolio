@@ -31,7 +31,7 @@ const projects = [
     category: '방수',
     area: '200㎡',
     duration: '2일',
-    desc: '10년 보증 옥상 우레탄 방수 시공',
+    desc: '누수 걱정 없는 옥상 우레탄 방수 시공',
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ const projects = [
     id: 6,
     title: '지하주차장 에폭시',
     category: '에폭시',
-    area: '1200㎡',
+    area: '1,200㎡',
     duration: '7일',
     desc: '컬러 구획이 포함된 주차장 에폭시 코팅',
   },
@@ -61,12 +61,16 @@ export default function Portfolio() {
     : projects.filter(p => p.category === active)
 
   return (
-    <section id="portfolio" className="py-20 px-6 bg-white">
+    <section id="portfolio" className="py-24 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold">
+        <div className="text-center mb-12">
+          <span className="text-accent font-medium text-sm tracking-wider">PORTFOLIO</span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
             시공 사례
           </h2>
+          <p className="text-dark-500 mt-3">
+            지금까지 진행한 작업들입니다
+          </p>
         </div>
 
         {/* Filter */}
@@ -75,10 +79,10 @@ export default function Portfolio() {
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-4 py-2 rounded text-sm font-medium transition-all ${
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
                 active === cat
-                  ? 'bg-accent text-white'
-                  : 'bg-concrete-100 text-concrete-600 hover:bg-concrete-200'
+                  ? 'bg-accent text-white shadow-sm'
+                  : 'bg-cream-100 text-dark-500 hover:bg-cream-200'
               }`}
             >
               {cat}
@@ -87,31 +91,33 @@ export default function Portfolio() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map(project => (
             <div
               key={project.id}
-              className="bg-white border border-concrete-200 rounded-lg overflow-hidden"
+              className="group bg-cream-50 border border-cream-200/80 rounded-2xl overflow-hidden hover:shadow-md transition-all"
             >
               {/* Image placeholder */}
-              <div className="relative aspect-[4/3] bg-concrete-200">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-concrete-300/40 flex items-center justify-center">
-                  <span className="bg-white/90 px-3 py-1.5 rounded text-xs font-medium text-concrete-600">
-                    {project.category}
-                  </span>
+              <div className="relative aspect-[4/3] bg-gradient-to-br from-cream-200 to-cream-300">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <span className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium text-dark-600 shadow-sm">
+                      {project.category}
+                    </span>
+                    <p className="text-dark-400 text-xs mt-3">사진 준비 중</p>
+                  </div>
                 </div>
               </div>
 
               {/* Info */}
-              <div className="p-4">
-                <h3 className="font-bold mb-1">
+              <div className="p-5">
+                <h3 className="font-bold text-dark-900 mb-1 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-concrete-600 text-sm mb-3">{project.desc}</p>
-                <div className="flex items-center gap-3 text-xs text-concrete-500">
-                  <span>{project.area}</span>
-                  <span>·</span>
-                  <span>{project.duration}</span>
+                <p className="text-dark-500 text-sm mb-3">{project.desc}</p>
+                <div className="flex items-center gap-3 text-xs text-dark-400">
+                  <span className="bg-cream-100 px-2 py-1 rounded">{project.area}</span>
+                  <span className="bg-cream-100 px-2 py-1 rounded">{project.duration}</span>
                 </div>
               </div>
             </div>
