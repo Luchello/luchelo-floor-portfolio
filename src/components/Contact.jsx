@@ -24,11 +24,11 @@ export default function Contact() {
           <div>
             <span className="text-accent font-medium text-sm tracking-wider uppercase">Contact</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6">
-              무료 상담 신청
+              연락처
             </h2>
             <p className="text-concrete-600 leading-relaxed mb-10">
-              바닥 시공에 대해 궁금한 점이 있으시면 편하게 연락주세요.
-              현장 방문 상담도 무료로 진행해 드립니다.
+              궁금한 거 있으시면 편하게 연락주세요.
+              현장 방문해서 보고 견적 알려드립니다.
             </p>
 
             <div className="space-y-6">
@@ -154,10 +154,10 @@ export default function Contact() {
                 type="submit"
                 className="w-full bg-accent hover:bg-accent-dark text-white py-4 rounded-xl font-medium text-lg transition-all hover:shadow-lg hover:shadow-accent/20"
               >
-                무료 상담 신청하기
+                문의하기
               </button>
               <p className="text-center text-concrete-400 text-xs">
-                * 상담 신청 후 24시간 이내 연락드립니다
+                * 확인하는 대로 연락드립니다
               </p>
             </form>
           </div>

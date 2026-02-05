@@ -25,34 +25,32 @@ export default function About() {
           <div>
             <span className="text-accent font-medium text-sm tracking-wider uppercase">About</span>
             <h2 className="text-3xl md:text-4xl font-bold mt-3 mb-6">
-              장인의 손끝에서<br />
-              완성되는 바닥
+              대성몰탈입니다
             </h2>
             <div className="space-y-4 text-concrete-600 leading-relaxed">
               <p>
-                안녕하세요. 바닥 미장 전문가 대성몰탈입니다.
-                10년이 넘는 시간 동안 수백 곳의 현장에서 바닥과 마주해왔습니다.
+                수도권에서 바닥 미장 일을 하고 있습니다.
+                에폭시, 우레탄, 셀프레벨링 같은 작업들을 주로 합니다.
               </p>
               <p>
-                바닥은 공간의 기초입니다. 
-                눈에 잘 띄지 않지만, 그 위에서 모든 생활이 이루어지죠.
-                그래서 저는 한 치의 타협 없이 
-                <strong className="text-concrete-800">완벽한 수평, 매끈한 마감</strong>을 추구합니다.
+                공장이나 주차장, 옥상 방수부터 아파트 셀프레벨링까지
+                현장마다 조건이 다 다르더라고요.
+                그래서 먼저 현장 보고 어떤 방법이 맞을지 상의드립니다.
               </p>
               <p>
-                에폭시, 우레탄, 셀프레벨링, 폴리싱 — 
-                다양한 공법을 현장 조건에 맞게 적용하여
-                오래도록 만족하실 수 있는 바닥을 만들어 드립니다.
+                시공 후에 문제 생기면 저도 난감하고 손님도 곤란하잖아요.
+                그래서 하지 작업이랑 수평 잡는 거 신경 많이 씁니다.
+                제대로 하면 오래 갑니다.
               </p>
             </div>
 
             {/* Highlights */}
             <div className="grid grid-cols-2 gap-4 mt-8">
               {[
-                { icon: '🏗️', title: '현장 경험', desc: '10년 이상의 실무' },
-                { icon: '✨', title: '완벽주의', desc: '타협 없는 마감' },
-                { icon: '🔧', title: '다양한 공법', desc: '맞춤 솔루션 제공' },
-                { icon: '🤝', title: '신뢰', desc: '100% 고객 만족' },
+                { icon: '🏗️', title: '수도권 전역', desc: '서울 경기 인천' },
+                { icon: '🔧', title: '다양한 시공', desc: '에폭시/셀프레벨링/방수' },
+                { icon: '📋', title: '현장 상담', desc: '직접 보고 견적' },
+                { icon: '🤝', title: 'A/S', desc: '시공 후 관리' },
               ].map(item => (
                 <div key={item.title} className="bg-white rounded-xl p-4 shadow-sm">
                   <span className="text-2xl">{item.icon}</span>

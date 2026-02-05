@@ -37,22 +37,16 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        <div className="inline-block mb-6">
-          <span className="text-accent text-sm font-medium tracking-[0.3em] uppercase border border-accent/30 px-4 py-2 rounded-full">
-            Professional Floor Finishing
-          </span>
-        </div>
-        
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-          바닥이 달라지면
+          탄탄한 바닥,
           <br />
-          <span className="text-accent">공간이 달라집니다</span>
+          <span className="text-accent">오래가는 시공</span>
         </h1>
-        
+
         <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto mb-10 leading-relaxed">
-          10년 이상의 현장 경험으로 완성하는 프리미엄 바닥 미장.
+          수도권 바닥 미장 전문 대성몰탈입니다.
           <br className="hidden md:block" />
-          매끈한 마감, 오래 가는 품질을 약속합니다.
+          현장 경험으로 제대로 시공해드립니다.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -66,22 +60,8 @@ export default function Hero() {
             href="#contact"
             className="border border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-full font-medium text-lg transition-all"
           >
-            무료 상담 신청
+            상담 문의
           </a>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto">
-          {[
-            { num: '10+', label: '년 경력' },
-            { num: '500+', label: '시공 완료' },
-            { num: '100%', label: '고객 만족' },
-          ].map(stat => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl md:text-3xl font-bold text-accent">{stat.num}</div>
-              <div className="text-white/50 text-sm mt-1">{stat.label}</div>
-            </div>
-          ))}
         </div>
       </div>
 
