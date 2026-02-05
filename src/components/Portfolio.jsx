@@ -1,97 +1,204 @@
 import { useState } from 'react'
 
 const projects = [
+  // ── 스토리가 있는 메인 사진들 ──
   {
     id: 1,
-    title: '대규모 바닥 타설',
-    category: '바닥미장',
-    area: '대형 현장',
-    desc: '넓은 면적의 산업용 바닥 타설 및 마감 시공',
-    photo: './photos/slab-finish.jpg',
+    title: '한옥 옥상 바닥미장',
+    category: '마감',
+    photo: './photos/hanok-trowel.jpg',
+    story: '전통 한옥 위에서 파워트라웰로 옥상 바닥을 잡는 작업. 오래된 것과 새로운 기술이 만나는 순간입니다.',
+    featured: true,
   },
   {
     id: 2,
-    title: '철근 배근 및 콘크리트 타설',
-    category: '바닥미장',
-    area: '대형 현장',
-    desc: '철근 배근 후 펌프카를 활용한 콘크리트 타설 작업',
-    photo: './photos/rebar-pour.jpg',
+    title: '새벽 콘크리트 타설',
+    category: '타설',
+    photo: './photos/crew-pouring.jpg',
+    story: '해 뜨기 전부터 시작되는 타설 현장. 레미콘이 굳기 전에 팀 전원이 호흡을 맞춰 작업합니다.',
+    featured: true,
   },
   {
     id: 3,
-    title: '바닥 마감 작업',
-    category: '바닥미장',
-    area: '실내',
-    desc: '파워 트라웰을 활용한 정밀 바닥 마감',
-    photo: './photos/power-trowel.jpg',
+    title: '산골 펜션 옥상 마감',
+    category: '마감',
+    photo: './photos/mountain-trowel.jpg',
+    story: '산 속 펜션 옥상에서 해 질 녘까지 이어진 마감 작업. 이런 풍경 속에서 일할 수 있다는 게 이 일의 매력입니다.',
+    featured: true,
   },
+  // ── 현장 사진들 ──
   {
     id: 4,
-    title: '펌프카 타설 현장',
-    category: '바닥미장',
-    area: '대형 현장',
-    desc: '대규모 현장 콘크리트 펌프카 타설',
-    photo: './photos/pump-sunset.jpg',
+    title: '대형 공장 바닥 타설 준비',
+    category: '타설',
+    photo: './photos/factory-rebar.jpg',
+    story: '수천 평 공장 부지의 철근 배근이 끝나고, 펌프카와 레미콘이 대기 중. 대규모 타설의 시작입니다.',
+    featured: false,
   },
   {
     id: 5,
-    title: '콘크리트 타설 작업',
-    category: '바닥미장',
-    area: '대형 현장',
-    desc: '팀 작업으로 진행하는 대면적 콘크리트 타설 현장',
-    photo: './photos/crew-pouring.jpg',
+    title: '공장 부지 배근 현장',
+    category: '타설',
+    photo: './photos/factory-rebar2.jpg',
+    story: null,
+    featured: false,
+  },
+  {
+    id: 6,
+    title: '대면적 슬래브 마감',
+    category: '마감',
+    photo: './photos/slab-finish.jpg',
+    story: '넓은 면적의 콘크리트가 한 면 한 면 깔끔하게 마감된 모습. 수평이 생명입니다.',
+    featured: false,
+  },
+  {
+    id: 7,
+    title: '건물 구조체 타설',
+    category: '타설',
+    photo: './photos/building-pour.jpg',
+    story: null,
+    featured: false,
+  },
+  {
+    id: 8,
+    title: '기초 슬래브 타설',
+    category: '타설',
+    photo: './photos/foundation-slab.jpg',
+    story: '거푸집 안에 타설된 기초 슬래브. 건물의 첫 번째 바닥이 완성되는 순간입니다.',
+    featured: false,
+  },
+  {
+    id: 9,
+    title: '옥상 바닥 마감',
+    category: '마감',
+    photo: './photos/rooftop-finish.jpg',
+    story: null,
+    featured: false,
+  },
+  {
+    id: 10,
+    title: '펌프카 일몰',
+    category: '타설',
+    photo: './photos/pump-sunset.jpg',
+    story: '하루 일과가 끝나갈 무렵의 펌프카 실루엣. 콘크리트가 굳기 전까지 멈출 수 없는 현장의 하루.',
+    featured: false,
+  },
+  {
+    id: 11,
+    title: '철근 배근 야간 타설',
+    category: '타설',
+    photo: './photos/rebar-pour.jpg',
+    story: null,
+    featured: false,
   },
 ]
 
+const categories = ['전체', '타설', '마감']
+
 export default function Portfolio() {
+  const [active, setActive] = useState('전체')
+
+  const filtered = active === '전체'
+    ? projects
+    : projects.filter(p => p.category === active)
+
+  const featured = filtered.filter(p => p.featured)
+  const rest = filtered.filter(p => !p.featured)
+
   return (
     <section id="portfolio" className="py-24 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <span className="text-accent font-medium text-sm tracking-wider">PORTFOLIO</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
-            시공 사례
+            시공 현장
           </h2>
           <p className="text-dark-500 mt-3">
-            실제 현장 사진입니다
+            직접 작업한 현장 사진입니다
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map(project => (
+        {/* Filter */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setActive(cat)}
+              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+                active === cat
+                  ? 'bg-accent text-white shadow-sm'
+                  : 'bg-cream-100 text-dark-500 hover:bg-cream-200'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Featured - 스토리가 있는 대형 카드 */}
+        {featured.length > 0 && (
+          <div className="space-y-6 mb-8">
+            {featured.map(project => (
+              <div
+                key={project.id}
+                className="group relative rounded-2xl overflow-hidden"
+              >
+                <div className="aspect-[21/9] md:aspect-[21/8]">
+                  <img 
+                    src={project.photo} 
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                  <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-3 inline-block">
+                    {project.category}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                    {project.title}
+                  </h3>
+                  {project.story && (
+                    <p className="text-cream-300/80 text-sm md:text-base max-w-2xl leading-relaxed">
+                      {project.story}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Grid - 나머지 사진들 */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {rest.map(project => (
             <div
               key={project.id}
               className="group bg-cream-50 border border-cream-200/80 rounded-2xl overflow-hidden hover:shadow-lg transition-all"
             >
-              {/* Real photo */}
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-[4/3] overflow-hidden">
                 <img 
                   src={project.photo} 
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-medium text-dark-600">
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-dark-600">
                     {project.category}
                   </span>
                 </div>
               </div>
-
-              {/* Info */}
               <div className="p-5">
-                <h3 className="font-bold text-dark-900 mb-1 text-lg group-hover:text-accent transition-colors">
+                <h3 className="font-bold text-dark-900 mb-1 group-hover:text-accent transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-dark-500 text-sm">{project.desc}</p>
+                {project.story && (
+                  <p className="text-dark-500 text-sm leading-relaxed">{project.story}</p>
+                )}
               </div>
             </div>
           ))}
-        </div>
-
-        <div className="text-center mt-10">
-          <p className="text-dark-400 text-sm">더 많은 시공 사례는 문의 시 안내드립니다</p>
         </div>
       </div>
     </section>

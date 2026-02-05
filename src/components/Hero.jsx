@@ -1,19 +1,18 @@
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background with real photo */}
+      {/* Background - 산골 석양 작업 사진 (가장 드라마틱한 사진) */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/80 via-dark-900/65 to-dark-950/85 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/70 via-dark-900/50 to-dark-950/80 z-10" />
         <img 
-          src="./photos/pump-sunset.jpg" 
-          alt="콘크리트 펌프카" 
+          src="./photos/mountain-trowel.jpg" 
+          alt="산 배경 바닥미장 작업" 
           className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 max-w-4xl mx-auto">
-        {/* Badge */}
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-5 py-2 mb-8">
           <div className="w-2 h-2 bg-accent rounded-full" />
           <span className="text-cream-300 text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
@@ -23,7 +22,7 @@ export default function Hero() {
           창성바닥미장
         </h1>
 
-        <p className="text-lg md:text-xl text-cream-300/80 max-w-xl mx-auto mb-4 leading-relaxed">
+        <p className="text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-4 leading-relaxed">
           에폭시 · 셀프레벨링 · 폴리싱 · 우레탄방수
         </p>
         <p className="text-base text-cream-400/60 mb-10">
