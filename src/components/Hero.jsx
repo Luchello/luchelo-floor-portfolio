@@ -19,7 +19,7 @@ export default function Hero() {
         </div>
 
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 tracking-tight">
-          창성바닥미장
+          대성몰탈
         </h1>
 
         <p className="text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-4 leading-relaxed">

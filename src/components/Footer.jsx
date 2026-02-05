@@ -5,9 +5,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-accent rounded flex items-center justify-center">
-              <span className="text-white font-bold text-sm">창</span>
+              <span className="text-white font-bold text-sm">대</span>
             </div>
-            <span className="font-bold text-white">창성바닥미장</span>
+            <span className="font-bold text-white">대성몰탈</span>
           </div>
 
           <div className="flex items-center gap-8 text-sm">
@@ -20,7 +20,7 @@ export default function Footer() {
 
         <div className="mt-8 pt-8 border-t border-dark-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <div className="flex items-center gap-4">
-            <p>© 2025 창성바닥미장</p>
+            <p>© 2025 대성몰탈</p>
             <span className="text-dark-700">|</span>
             <a href="tel:010-5535-7129" className="hover:text-accent transition-colors">010-5535-7129</a>
           </div>

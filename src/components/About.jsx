@@ -12,14 +12,14 @@ export default function About() {
         <div className="text-center mb-16">
           <span className="text-accent font-medium text-sm tracking-wider">ABOUT US</span>
           <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
-            창성바닥미장을 소개합니다
+            대성몰탈을 소개합니다
           </h2>
         </div>
 
         <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-cream-200/80 mb-12">
           <div className="space-y-4 text-dark-600 leading-relaxed text-lg text-center max-w-3xl mx-auto">
             <p>
-              안녕하세요, <strong className="text-dark-800">창성바닥미장</strong>입니다.
+              안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
             </p>
             <p>
               수도권을 중심으로 에폭시, 셀프레벨링, 폴리싱, 우레탄 방수 등

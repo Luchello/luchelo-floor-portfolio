@@ -28,12 +28,12 @@ export default function Navbar() {
           <div className={`w-8 h-8 rounded flex items-center justify-center transition-colors ${
             scrolled ? 'bg-accent' : 'bg-white/15 backdrop-blur-sm'
           }`}>
-            <span className="text-white font-bold text-sm">창</span>
+            <span className="text-white font-bold text-sm">대</span>
           </div>
           <span className={`font-bold text-lg tracking-tight transition-colors ${
             scrolled ? 'text-dark-900' : 'text-white'
           }`}>
-            창성바닥미장
+            대성몰탈
           </span>
         </a>
 
