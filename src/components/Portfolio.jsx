@@ -33,6 +33,14 @@ const projects = [
     desc: '대규모 현장 콘크리트 펌프카 타설',
     photo: './photos/pump-sunset.jpg',
   },
+  {
+    id: 5,
+    title: '콘크리트 타설 작업',
+    category: '바닥미장',
+    area: '대형 현장',
+    desc: '팀 작업으로 진행하는 대면적 콘크리트 타설 현장',
+    photo: './photos/crew-pouring.jpg',
+  },
 ]
 
 export default function Portfolio() {
