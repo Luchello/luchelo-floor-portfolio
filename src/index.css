@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-warm-50: #FAF7F2;
-  --color-warm-100: #F5F0E8;
-  --color-warm-200: #E8DFD1;
-  --color-warm-300: #D4C5AD;
-  --color-warm-400: #C4A882;
-  --color-warm-500: #B08D5E;
-  --color-warm-600: #96734A;
-  --color-warm-700: #7A5D3D;
-  --color-warm-800: #5E4730;
-  --color-warm-900: #3D2E1F;
-  --color-warm-950: #1F1710;
-  
-  --color-concrete-50: #F7F7F6;
-  --color-concrete-100: #EDEDEB;
-  --color-concrete-200: #D6D6D2;
-  --color-concrete-300: #B8B8B2;
-  --color-concrete-400: #95958D;
-  --color-concrete-500: #74746C;
-  --color-concrete-600: #5C5C55;
-  --color-concrete-700: #4A4A44;
-  --color-concrete-800: #3A3A35;
-  --color-concrete-900: #2A2A26;
-  --color-concrete-950: #1A1A17;
+  --color-warm-50: #FFF7F0;
+  --color-warm-100: #FFEDD9;
+  --color-warm-200: #FFD9B3;
+  --color-warm-300: #FFC280;
+  --color-warm-400: #FFA64D;
+  --color-warm-500: #FF8A1A;
+  --color-warm-600: #E67300;
+  --color-warm-700: #B35900;
+  --color-warm-800: #804000;
+  --color-warm-900: #4D2600;
+  --color-warm-950: #331900;
 
-  --color-accent: #C8956A;
-  --color-accent-light: #E0B892;
-  --color-accent-dark: #A07348;
+  --color-concrete-50: #F8F9FA;
+  --color-concrete-100: #F0F2F4;
+  --color-concrete-200: #E1E5E9;
+  --color-concrete-300: #C4CBD3;
+  --color-concrete-400: #9AA5B1;
+  --color-concrete-500: #6B7684;
+  --color-concrete-600: #4B5563;
+  --color-concrete-700: #374151;
+  --color-concrete-800: #1F2937;
+  --color-concrete-900: #111827;
+  --color-concrete-950: #0A0E14;
+
+  --color-accent: #FF8A1A;
+  --color-accent-light: #FFA64D;
+  --color-accent-dark: #E67300;
 
   --font-sans: 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
 }

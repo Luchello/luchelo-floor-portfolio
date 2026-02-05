@@ -56,32 +56,28 @@ const categories = ['전체', '에폭시', '폴리싱', '셀프레벨링', '방�
 export default function Portfolio() {
   const [active, setActive] = useState('전체')
 
-  const filtered = active === '전체' 
-    ? projects 
+  const filtered = active === '전체'
+    ? projects
     : projects.filter(p => p.category === active)
 
   return (
-    <section id="portfolio" className="py-24 px-6">
+    <section id="portfolio" className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="text-accent font-medium text-sm tracking-wider uppercase">Portfolio</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold">
             시공 사례
           </h2>
-          <p className="text-concrete-500 mt-4">
-            직접 시공한 현장의 결과물을 확인하세요
-          </p>
         </div>
 
         {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setActive(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded text-sm font-medium transition-all ${
                 active === cat
-                  ? 'bg-accent text-white shadow-md shadow-accent/20'
+                  ? 'bg-accent text-white'
                   : 'bg-concrete-100 text-concrete-600 hover:bg-concrete-200'
               }`}
             >
@@ -91,53 +87,31 @@ export default function Portfolio() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map(project => (
             <div
               key={project.id}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+              className="bg-white border border-concrete-200 rounded-lg overflow-hidden"
             >
-              {/* Image placeholder with Before/After concept */}
-              <div className="relative aspect-[4/3] bg-concrete-200 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-concrete-300/30" />
-                
-                {/* Before/After slider placeholder */}
-                <div className="absolute inset-0 flex">
-                  <div className="w-1/2 bg-concrete-300/50 flex items-center justify-center border-r-2 border-white/50">
-                    <span className="text-concrete-500 text-xs font-medium bg-white/80 px-3 py-1 rounded-full">Before</span>
-                  </div>
-                  <div className="w-1/2 bg-accent/10 flex items-center justify-center">
-                    <span className="text-accent-dark text-xs font-medium bg-white/80 px-3 py-1 rounded-full">After</span>
-                  </div>
-                </div>
-
-                {/* Category badge */}
-                <div className="absolute top-3 left-3">
-                  <span className="bg-white/90 backdrop-blur-sm text-concrete-700 text-xs font-medium px-3 py-1 rounded-full">
+              {/* Image placeholder */}
+              <div className="relative aspect-[4/3] bg-concrete-200">
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-concrete-300/40 flex items-center justify-center">
+                  <span className="bg-white/90 px-3 py-1.5 rounded text-xs font-medium text-concrete-600">
                     {project.category}
                   </span>
                 </div>
               </div>
 
               {/* Info */}
-              <div className="p-5">
-                <h3 className="font-bold text-lg mb-2 group-hover:text-accent transition-colors">
+              <div className="p-4">
+                <h3 className="font-bold mb-1">
                   {project.title}
                 </h3>
-                <p className="text-concrete-500 text-sm mb-4">{project.desc}</p>
-                <div className="flex items-center gap-4 text-xs text-concrete-400">
-                  <span className="flex items-center gap-1">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-                    </svg>
-                    {project.area}
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {project.duration}
-                  </span>
+                <p className="text-concrete-600 text-sm mb-3">{project.desc}</p>
+                <div className="flex items-center gap-3 text-xs text-concrete-500">
+                  <span>{project.area}</span>
+                  <span>·</span>
+                  <span>{project.duration}</span>
                 </div>
               </div>
             </div>

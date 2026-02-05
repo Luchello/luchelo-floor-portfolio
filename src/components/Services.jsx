@@ -43,37 +43,25 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 px-6 bg-white">
+    <section id="services" className="py-20 px-6 bg-concrete-50">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-accent font-medium text-sm tracking-wider uppercase">Services</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3">
-            시공 종류
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            시공 분야
           </h2>
-          <p className="text-concrete-500 mt-4 max-w-xl mx-auto">
-            주로 하는 작업들입니다. 현장 상황 보고 적합한 걸로 제안드립니다
+          <p className="text-concrete-600 mt-3">
+            주로 하는 작업들입니다
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-5">
           {services.map((svc, i) => (
             <div
               key={svc.title}
-              className="group bg-warm-50 hover:bg-warm-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-lg border border-transparent hover:border-accent/10"
+              className="bg-white rounded-lg p-6 border border-concrete-200"
             >
-              <div className="text-accent mb-4">{svc.icon}</div>
-              <h3 className="text-xl font-bold mb-3">{svc.title}</h3>
-              <p className="text-concrete-600 leading-relaxed mb-4">{svc.desc}</p>
-              <div className="flex gap-2">
-                {svc.tags.map(tag => (
-                  <span
-                    key={tag}
-                    className="text-xs bg-accent/10 text-accent-dark px-3 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <h3 className="text-xl font-bold mb-2 text-concrete-900">{svc.title}</h3>
+              <p className="text-concrete-600 text-sm leading-relaxed">{svc.desc}</p>
             </div>
           ))}
         </div>
