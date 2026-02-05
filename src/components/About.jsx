@@ -30,7 +30,7 @@ export default function About() {
             </h2>
             <div className="space-y-4 text-concrete-600 leading-relaxed">
               <p>
-                안녕하세요. 바닥 미장 전문가 루첼로입니다.
+                안녕하세요. 바닥 미장 전문가 대성몰탈입니다.
                 10년이 넘는 시간 동안 수백 곳의 현장에서 바닥과 마주해왔습니다.
               </p>
               <p>

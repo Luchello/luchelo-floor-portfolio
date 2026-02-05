@@ -27,12 +27,12 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-accent rounded-sm flex items-center justify-center">
-            <span className="text-white font-bold text-sm">미</span>
+            <span className="text-white font-bold text-sm">대</span>
           </div>
           <span className={`font-bold text-lg tracking-tight transition-colors ${
             scrolled ? 'text-concrete-900' : 'text-white'
           }`}>
-            루첼로 미장
+            대성몰탈
           </span>
         </a>
 

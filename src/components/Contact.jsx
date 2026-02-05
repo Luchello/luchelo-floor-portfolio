@@ -53,7 +53,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1">카카오톡</h3>
-                  <p className="text-concrete-500">카카오톡 ID: luchelo</p>
+                  <p className="text-concrete-500">카카오톡 ID: daesung-mortar</p>
                   <p className="text-concrete-400 text-sm">언제든 편하게 문의</p>
                 </div>
               </div>
