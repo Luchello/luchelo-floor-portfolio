@@ -1,16 +1,14 @@
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background */}
+      {/* Background with real photo */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/85 via-dark-900/75 to-dark-950/90 z-10" />
-        <div className="absolute inset-0 bg-dark-800">
-          {/* Subtle texture */}
-          <div className="absolute inset-0 opacity-[0.06]" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-            backgroundSize: '32px 32px'
-          }} />
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/80 via-dark-900/65 to-dark-950/85 z-10" />
+        <img 
+          src="./photos/pump-sunset.jpg" 
+          alt="콘크리트 펌프카" 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
       </div>
 
       {/* Content */}
