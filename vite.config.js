@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: '/luchelo-floor-portfolio/',
+  base: process.env.GITHUB_PAGES ? '/luchelo-floor-portfolio/' : '/',
   server: {
     host: '0.0.0.0',
     port: 5173,
