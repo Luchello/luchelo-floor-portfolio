@@ -6,9 +6,9 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const ref = useRef()
 
-  // Generate WebP path from JPG
+  // Generate WebP paths
   const webpSrc = src.replace('.jpg', '.webp')
-  const thumbnailSrc = thumbnail ? src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp') : webpSrc
+  const thumbnailWebp = src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp')
 
   useEffect(() => {
     // Check for reduced motion preference
@@ -69,7 +69,17 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
       
       {inView && (
         <picture>
-          <source srcSet={thumbnailSrc} type="image/webp" />
+          {thumbnail ? (
+            // Thumbnail mode: responsive srcSet with thumb for small, full for large
+            <source 
+              srcSet={`${thumbnailWebp} 400w, ${webpSrc} 800w`} 
+              type="image/webp" 
+              sizes="(max-width: 640px) 50vw, 33vw"
+            />
+          ) : (
+            // Full-size mode: just use full WebP
+            <source srcSet={webpSrc} type="image/webp" />
+          )}
           <img
             src={src}
             alt={alt}

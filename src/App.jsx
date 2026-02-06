@@ -19,7 +19,7 @@ const FloatingCTA = lazy(() => import('./components/FloatingCTA'))
 const SectionFallback = () => <div className="py-32" aria-hidden="true" />
 
 // Wave divider component
-function WaveDivider({ fromColor, toColor, flip = false }) {
+function WaveDivider({ toColor, flip = false }) {
   return (
     <div className="wave-divider" aria-hidden="true" style={{ marginTop: '-1px' }}>
       <svg 
@@ -70,15 +70,35 @@ function App() {
         
         <Suspense fallback={<SectionFallback />}>
           <About />
+        </Suspense>
+        
+        <Suspense fallback={<SectionFallback />}>
           <Stats />
-          {/* Wave: dark Stats to light Services */}
-          <WaveDivider fromColor="#282520" toColor="#FEFCF9" />
+        </Suspense>
+        
+        {/* Wave: dark Stats to light Services */}
+        <WaveDivider toColor="#FEFCF9" />
+        
+        <Suspense fallback={<SectionFallback />}>
           <Services />
+        </Suspense>
+        
+        <Suspense fallback={<SectionFallback />}>
           <Portfolio />
-          {/* Wave: white Portfolio to cream Equipment */}
-          <WaveDivider fromColor="#FFFFFF" toColor="rgba(253, 248, 240, 0.5)" />
+        </Suspense>
+        
+        {/* Wave: white Portfolio to cream Equipment */}
+        <WaveDivider toColor="rgba(253, 248, 240, 0.5)" />
+        
+        <Suspense fallback={<SectionFallback />}>
           <Equipment />
+        </Suspense>
+        
+        <Suspense fallback={<SectionFallback />}>
           <Process />
+        </Suspense>
+        
+        <Suspense fallback={<SectionFallback />}>
           <Contact />
         </Suspense>
       </main>

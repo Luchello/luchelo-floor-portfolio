@@ -1,9 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { AnimateIn } from '../hooks/useScrollAnimation'
 
 export default function Contact() {
   const [formState, setFormState] = useState('idle') // idle | confirm
   const [formData, setFormData] = useState(null)
+  const [isVisible, setIsVisible] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const modalRef = useRef(null)
+  const previousActiveElement = useRef(null)
+
+  // Check for reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    const handleChange = (e) => setPrefersReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -16,14 +29,62 @@ export default function Contact() {
     // Prepare SMS text (limited to keep it short)
     const smsText = `[대성몰탈 문의] ${name} / ${phone} / ${service}${message ? ` / ${message.slice(0, 50)}` : ''}`
     
+    // Store current focus for restoration
+    previousActiveElement.current = document.activeElement
+    
     setFormData({ name, phone, service, message, smsText })
     setFormState('confirm')
   }
 
-  const handleClose = () => {
-    setFormState('idle')
-    setFormData(null)
-  }
+  // Modal open effect: fade in, focus trap, body scroll lock
+  useEffect(() => {
+    if (formState === 'confirm') {
+      // Fade in
+      const timer = setTimeout(() => setIsVisible(true), 10)
+      
+      // Lock body scroll
+      const originalStyle = window.getComputedStyle(document.body).overflow
+      document.body.style.overflow = 'hidden'
+      
+      // Focus the modal
+      if (modalRef.current) {
+        modalRef.current.focus()
+      }
+      
+      return () => {
+        clearTimeout(timer)
+        document.body.style.overflow = originalStyle
+      }
+    } else {
+      setIsVisible(false)
+    }
+  }, [formState])
+
+  const handleClose = useCallback(() => {
+    setIsVisible(false)
+    const delay = prefersReducedMotion ? 0 : 200
+    setTimeout(() => {
+      setFormState('idle')
+      setFormData(null)
+      // Restore focus
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus()
+      }
+    }, delay)
+  }, [prefersReducedMotion])
+
+  // Keyboard handling: Escape to close
+  useEffect(() => {
+    if (formState !== 'confirm') return
+    
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        handleClose()
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [formState, handleClose])
 
   const handleSMS = () => {
     const encoded = encodeURIComponent(formData.smsText)
@@ -35,6 +96,8 @@ export default function Contact() {
     window.location.href = 'tel:010-5535-7129'
     handleClose()
   }
+
+  const transitionDuration = prefersReducedMotion ? 'duration-0' : 'duration-200'
 
   return (
     <section id="contact" className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-50">
@@ -172,14 +235,37 @@ export default function Contact() {
       {/* Confirmation Modal */}
       {formState === 'confirm' && formData && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-900/60 backdrop-blur-sm"
+          ref={modalRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modal-title"
+          tabIndex={-1}
+          className={`fixed inset-0 z-50 flex items-center justify-center p-4 transition-opacity ${transitionDuration} ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          }`}
           onClick={handleClose}
         >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-dark-900/60 backdrop-blur-sm" aria-hidden="true" />
+          
           <div 
-            className="bg-white rounded-2xl p-6 sm:p-8 w-full max-w-md shadow-2xl transform transition-all"
+            className={`relative bg-white rounded-2xl p-6 sm:p-8 w-full max-w-md shadow-2xl transition-transform ${transitionDuration} ${
+              isVisible ? 'scale-100' : 'scale-95'
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-xl font-bold text-dark-900 mb-4 text-center">
+            {/* Close button */}
+            <button
+              onClick={handleClose}
+              className="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-dark-400 hover:text-dark-600 rounded-full hover:bg-cream-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              aria-label="닫기"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <h3 id="modal-title" className="text-xl font-bold text-dark-900 mb-4 text-center">
               문의 내용 확인
             </h3>
             
@@ -199,23 +285,23 @@ export default function Contact() {
             <div className="space-y-3">
               <button
                 onClick={handleSMS}
-                className="w-full flex items-center justify-center gap-3 bg-accent hover:bg-accent-dark text-white py-4 rounded-xl font-bold transition-all btn-press"
+                className="w-full flex items-center justify-center gap-3 bg-accent hover:bg-accent-dark text-white py-4 rounded-xl font-bold transition-all btn-press focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
-                <span className="text-lg">📱</span>
+                <span className="text-lg" aria-hidden="true">📱</span>
                 SMS 문자 보내기
               </button>
               
               <button
                 onClick={handleCall}
-                className="w-full flex items-center justify-center gap-3 bg-dark-800 hover:bg-dark-900 text-white py-4 rounded-xl font-bold transition-all btn-press"
+                className="w-full flex items-center justify-center gap-3 bg-dark-800 hover:bg-dark-900 text-white py-4 rounded-xl font-bold transition-all btn-press focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
-                <span className="text-lg">📞</span>
+                <span className="text-lg" aria-hidden="true">📞</span>
                 전화 걸기
               </button>
               
               <button
                 onClick={handleClose}
-                className="w-full py-3 text-dark-500 hover:text-dark-700 text-sm font-medium transition-colors"
+                className="w-full py-3 text-dark-500 hover:text-dark-700 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
               >
                 취소
               </button>

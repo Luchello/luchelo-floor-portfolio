@@ -182,11 +182,17 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <img
-          src={currentImage.photo}
-          alt={currentImage.title || '시공 현장 사진'}
-          className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
-        />
+        <picture>
+          <source 
+            srcSet={currentImage.photo.replace('.jpg', '.webp')} 
+            type="image/webp" 
+          />
+          <img
+            src={currentImage.photo}
+            alt={currentImage.title || '시공 현장 사진'}
+            className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl"
+          />
+        </picture>
         
         {/* Caption */}
         <div className="mt-4 text-center px-4 max-w-2xl">

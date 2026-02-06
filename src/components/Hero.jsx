@@ -74,7 +74,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-dark-950/70 via-dark-900/50 to-dark-950/80 z-10" />
         <div 
           className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}
-          style={!prefersReducedMotion ? { transform: `translateY(${parallaxY}px)` } : undefined}
+          style={!prefersReducedMotion ? { transform: `translateY(${parallaxY}px)`, willChange: 'transform' } : undefined}
         >
           <picture>
             <source srcSet="./photos/mountain-trowel.webp" type="image/webp" />
