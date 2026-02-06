@@ -46,7 +46,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-dark-500 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-              에폭시, 셀프레벨링, 폴리싱, 우레탄방수 등 바닥미장 전문 시공업체입니다.
+              방통, 재물 등 바닥미장 전문 시공업체입니다.
             </p>
           </div>
 
@@ -84,7 +84,7 @@ export default function Footer() {
                   <span className="text-dark-400">영업시간:</span> 평일 08:00 ~ 18:00
                 </p>
                 <p>
-                  <span className="text-dark-400">시공지역:</span> 수도권 전 지역
+                  <span className="text-dark-400">시공지역:</span> 충청권 · 경기도권
                 </p>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-dark-800/50 text-center text-sm text-dark-600">
-          <p>© {currentYear} 대성몰탈. 수도권 바닥미장 전문 시공업체.</p>
+          <p>© {currentYear} 대성몰탈. 충청권 · 경기도권 바닥미장 전문 시공업체.</p>
         </div>
       </div>
     </footer>

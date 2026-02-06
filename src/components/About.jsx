@@ -27,7 +27,7 @@ export default function About() {
                 안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
               </p>
               <p>
-                수도권을 중심으로 에폭시, 셀프레벨링, 폴리싱, 우레탄 방수 등
+                충청권과 경기도권을 중심으로 방통, 재물 등 
                 바닥미장 전반에 걸친 시공을 전문으로 하고 있습니다.
               </p>
               <p>

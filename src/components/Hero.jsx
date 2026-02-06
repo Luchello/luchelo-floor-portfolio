@@ -52,10 +52,10 @@ export default function Hero() {
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-light">
-          에폭시 · 셀프레벨링 · 폴리싱 · 우레탄방수
+          방통 · 재물 · 바닥미장
         </p>
         <p className="text-sm sm:text-base text-cream-400/50 mb-8 sm:mb-12">
-          수도권 전 지역 · 현장 방문 견적 무료
+          충청권 · 경기도권 · 현장 방문 견적 무료
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

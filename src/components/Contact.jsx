@@ -66,7 +66,7 @@ export default function Contact() {
                   </div>
                   <h3 className="font-bold text-dark-800">시공 지역</h3>
                 </div>
-                <p className="text-dark-600 font-medium">수도권 전 지역</p>
+                <p className="text-dark-600 font-medium">충청권 · 경기도권</p>
                 <p className="text-sm text-dark-400 mt-1">그 외 지역도 상담 가능합니다</p>
               </div>
             </AnimateIn>
@@ -118,10 +118,9 @@ export default function Contact() {
                   className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-600 transition-all text-base"
                 >
                   <option value="">시공 종류 선택</option>
-                  <option value="에폭시">에폭시 코팅</option>
-                  <option value="셀프레벨링">셀프레벨링</option>
-                  <option value="폴리싱">폴리싱 / 그라인딩</option>
-                  <option value="우레탄방수">우레탄 방수</option>
+                  <option value="방통">방통 시공</option>
+                  <option value="재물">재물 마감</option>
+                  <option value="보수">보수 시공</option>
                   <option value="기타">기타 / 상담</option>
                 </select>
               </div>
