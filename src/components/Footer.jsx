@@ -77,7 +77,7 @@ export default function Footer() {
                 className="text-accent font-bold text-lg hover:text-accent-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-2 py-1 inline-block"
                 aria-label="전화 걸기: 010-5535-7129"
               >
-                📞 010-5535-7129
+                <span className="phone-heartbeat" aria-hidden="true">📞</span> 010-5535-7129
               </a>
               <div className="text-dark-500 text-sm space-y-1">
                 <p>

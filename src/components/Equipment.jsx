@@ -49,8 +49,11 @@ export default function Equipment() {
         <AnimateIn>
           <div className="text-center mb-10 sm:mb-14">
             <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">Equipment</span>
-            <h2 id="equipment-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900 section-header tracking-wide">
+            <h2 id="equipment-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900 section-header tracking-wide inline-flex items-center gap-3 justify-center">
               보유 장비
+              <span className="text-sm font-medium bg-accent/10 text-accent px-3 py-1 rounded-full">
+                자체 보유 4대
+              </span>
             </h2>
             <p className="text-dark-500 mt-3 text-sm sm:text-base leading-loose">
               자체 장비로 빠르고 정확한 시공이 가능합니다

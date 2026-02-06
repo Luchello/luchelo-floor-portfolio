@@ -10,6 +10,25 @@ import Contact from './components/Contact'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollTop from './components/ScrollTop'
+import ScrollProgress from './components/ScrollProgress'
+import FloatingCTA from './components/FloatingCTA'
+
+// Wave divider component
+function WaveDivider({ fromColor, toColor, flip = false }) {
+  return (
+    <div className="wave-divider" aria-hidden="true" style={{ marginTop: '-1px' }}>
+      <svg 
+        viewBox="0 0 1200 60" 
+        preserveAspectRatio="none" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        style={flip ? { transform: 'rotate(180deg)' } : undefined}
+      >
+        <path d="M0 60V30C200 60 400 0 600 30C800 60 1000 0 1200 30V60H0Z" fill={toColor}/>
+      </svg>
+    </div>
+  )
+}
 
 function App() {
   const [appLoaded, setAppLoaded] = useState(false)
@@ -26,6 +45,8 @@ function App() {
         appLoaded ? 'opacity-100' : 'opacity-0'
       }`}
     >
+      <ScrollProgress />
+      
       {/* Skip to content link for keyboard navigation */}
       <a
         href="#main-content"
@@ -38,10 +59,15 @@ function App() {
       
       <main id="main-content" role="main">
         <Hero />
+        {/* Hero has built-in wave to cream-50 */}
         <About />
         <Stats />
+        {/* Wave: dark Stats to light Services */}
+        <WaveDivider fromColor="#282520" toColor="#FEFCF9" />
         <Services />
         <Portfolio />
+        {/* Wave: white Portfolio to cream Equipment */}
+        <WaveDivider fromColor="#FFFFFF" toColor="rgba(253, 248, 240, 0.5)" />
         <Equipment />
         <Process />
         <Contact />
@@ -49,6 +75,7 @@ function App() {
       
       <Footer />
       <ScrollTop />
+      <FloatingCTA />
     </div>
   )
 }

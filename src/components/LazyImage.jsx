@@ -55,9 +55,9 @@ export default function LazyImage({ src, alt, className = '', onClick, ...props 
       {...clickableProps}
       {...props}
     >
-      {/* Placeholder */}
+      {/* Placeholder with shimmer */}
       <div 
-        className={`absolute inset-0 bg-cream-200 ${transitionClass} ${loaded ? 'opacity-0' : 'opacity-100'}`} 
+        className={`absolute inset-0 shimmer-placeholder ${transitionClass} ${loaded ? 'opacity-0' : 'opacity-100'}`} 
         aria-hidden="true"
       />
       

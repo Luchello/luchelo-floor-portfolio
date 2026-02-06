@@ -4,6 +4,7 @@ export default function Hero() {
   const [loaded, setLoaded] = useState(false)
   const [parallaxY, setParallaxY] = useState(0)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [scrollStarted, setScrollStarted] = useState(false)
   const sectionRef = useRef(null)
 
   // Check for reduced motion preference
@@ -22,11 +23,16 @@ export default function Hero() {
     img.src = './photos/mountain-trowel.jpg'
   }, [])
 
-  // Parallax effect on scroll
+  // Parallax effect on scroll + hide scroll indicator
   useEffect(() => {
-    if (prefersReducedMotion) return
-
     const handleScroll = () => {
+      // Hide scroll indicator after scrolling starts
+      if (window.scrollY > 50) {
+        setScrollStarted(true)
+      }
+
+      if (prefersReducedMotion) return
+
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect()
         // Only apply parallax when section is in view
@@ -117,14 +123,23 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - hides after scrolling starts */}
       <div 
-        className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-1000 delay-1000 motion-reduce:duration-0 motion-reduce:delay-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-500 motion-reduce:duration-0 ${
+          loaded && !scrollStarted ? 'opacity-100' : 'opacity-0'
+        }`}
         aria-hidden="true"
       >
         <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white/40 rounded-full mt-2 animate-bounce motion-reduce:animate-none" />
         </div>
+      </div>
+
+      {/* Wave divider at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1200 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 60V30C200 60 400 0 600 30C800 60 1000 0 1200 30V60H0Z" fill="#FEFCF9"/>
+        </svg>
       </div>
     </section>
   )

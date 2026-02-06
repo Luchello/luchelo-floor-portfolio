@@ -77,7 +77,7 @@ export default function Navbar() {
       aria-label="메인 네비게이션"
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-cream-50/95 backdrop-blur-md shadow-sm border-b border-cream-200/50' 
+          ? 'bg-cream-50/95 backdrop-blur-md shadow-sm navbar-gradient-bottom' 
           : 'bg-transparent'
       }`}
     >

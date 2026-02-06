@@ -6,6 +6,11 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const modalRef = useRef(null)
   const previousActiveElement = useRef(null)
+  
+  // Touch swipe state
+  const touchStartX = useRef(null)
+  const touchEndX = useRef(null)
+  const minSwipeDistance = 50
 
   const currentImage = images[currentIndex]
 
@@ -81,6 +86,33 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [handleClose, goNext, goPrev])
 
+  // Touch swipe handlers
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX
+    touchEndX.current = null
+  }
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    
+    const distance = touchStartX.current - touchEndX.current
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe && images.length > 1) {
+      goNext()
+    } else if (isRightSwipe && images.length > 1) {
+      goPrev()
+    }
+
+    touchStartX.current = null
+    touchEndX.current = null
+  }
+
   // Handle backdrop click
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -146,6 +178,9 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
           isVisible ? 'scale-100' : 'scale-95'
         }`}
         onClick={(e) => e.stopPropagation()}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         <img
           src={currentImage.photo}

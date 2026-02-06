@@ -182,6 +182,9 @@ export default function Contact() {
                   disabled={formState !== 'idle'}
                   className="w-full px-4 py-3.5 sm:py-3.5 min-h-[120px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-dark-800 placeholder:text-dark-400 transition-all text-base disabled:opacity-50"
                 />
+                <p className="text-xs text-dark-400 mt-2 px-1">
+                  현장 주소, 면적, 요청사항 등
+                </p>
               </div>
               <button
                 type="submit"

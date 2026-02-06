@@ -168,7 +168,7 @@ export default function Portfolio() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
-                      <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-2 sm:mb-3 inline-block">
+                      <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-2 sm:mb-3 inline-block badge-glow">
                         {project.category}
                       </span>
                       <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">
