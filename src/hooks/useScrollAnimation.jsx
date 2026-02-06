@@ -24,6 +24,17 @@ export function useScrollAnimation(options = {}) {
 
 export function AnimateIn({ children, className = '', delay = 0, direction = 'up' }) {
   const [ref, isVisible] = useScrollAnimation()
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e) => setPrefersReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
   
   const directions = {
     up: 'translate-y-8',
@@ -31,6 +42,15 @@ export function AnimateIn({ children, className = '', delay = 0, direction = 'up
     left: 'translate-x-8',
     right: '-translate-x-8',
     none: '',
+  }
+
+  // If user prefers reduced motion, skip animation entirely
+  if (prefersReducedMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    )
   }
 
   return (

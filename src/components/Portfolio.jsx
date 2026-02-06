@@ -94,27 +94,30 @@ export default function Portfolio() {
   const rest = filtered.filter(p => !p.featured)
 
   return (
-    <section id="portfolio" className="py-28 px-6 bg-white">
+    <section id="portfolio" className="py-20 sm:py-28 px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <AnimateIn>
-          <div className="text-center mb-12">
-            <span className="text-accent font-medium text-sm tracking-widest uppercase">Portfolio</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+          <div className="text-center mb-10 sm:mb-12">
+            <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">Portfolio</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900">
               시공 현장
             </h2>
-            <p className="text-dark-500 mt-3">
+            <p className="text-dark-500 mt-3 text-sm sm:text-base">
               직접 작업한 현장 사진입니다
             </p>
           </div>
         </AnimateIn>
 
         <AnimateIn delay={100}>
-          <div className="flex flex-wrap justify-center gap-2 mb-10">
+          <div className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-10" role="tablist" aria-label="카테고리 필터">
             {categories.map(cat => (
               <button
                 key={cat}
                 onClick={() => setActive(cat)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+                role="tab"
+                aria-selected={active === cat}
+                aria-controls="portfolio-grid"
+                className={`px-5 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
                   active === cat
                     ? 'bg-accent text-white shadow-md shadow-accent/20'
                     : 'bg-cream-100 text-dark-500 hover:bg-cream-200'
@@ -126,67 +129,68 @@ export default function Portfolio() {
           </div>
         </AnimateIn>
 
-        {/* Featured */}
-        {featured.length > 0 && (
-          <div className="space-y-6 mb-8">
-            {featured.map((project, i) => (
-              <AnimateIn key={project.id} delay={i * 150}>
-                <div className="group relative rounded-2xl overflow-hidden cursor-default">
-                  <LazyImage
-                    src={project.photo}
-                    alt={project.title}
-                    className="aspect-[21/9] md:aspect-[21/8]"
-                  />
-                  {/* Hover zoom on the image inside LazyImage */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                    <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-3 inline-block">
-                      {project.category}
-                    </span>
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+        <div id="portfolio-grid" role="tabpanel">
+          {/* Featured */}
+          {featured.length > 0 && (
+            <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
+              {featured.map((project, i) => (
+                <AnimateIn key={project.id} delay={i * 150}>
+                  <article className="group relative rounded-xl sm:rounded-2xl overflow-hidden cursor-default">
+                    <LazyImage
+                      src={project.photo}
+                      alt={`${project.title} - ${project.category} 작업 현장`}
+                      className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" aria-hidden="true" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
+                      <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-2 sm:mb-3 inline-block">
+                        {project.category}
+                      </span>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-1 sm:mb-2">
+                        {project.title}
+                      </h3>
+                      {project.story && (
+                        <p className="text-cream-300/80 text-xs sm:text-sm md:text-base max-w-2xl leading-relaxed">
+                          {project.story}
+                        </p>
+                      )}
+                    </div>
+                  </article>
+                </AnimateIn>
+              ))}
+            </div>
+          )}
+
+          {/* Grid - responsive: 1 col mobile, 2 col sm, 3 col lg */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {rest.map((project, i) => (
+              <AnimateIn key={project.id} delay={i * 80}>
+                <article className="group bg-cream-50 border border-cream-200/80 rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <LazyImage
+                      src={project.photo}
+                      alt={`${project.title} - ${project.category} 작업 현장`}
+                      className="w-full h-full"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" aria-hidden="true" />
+                    <div className="absolute bottom-3 left-3">
+                      <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-dark-600">
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 sm:p-5">
+                    <h3 className="font-bold text-dark-900 mb-1 group-hover:text-accent transition-colors text-sm sm:text-base">
                       {project.title}
                     </h3>
                     {project.story && (
-                      <p className="text-cream-300/80 text-sm md:text-base max-w-2xl leading-relaxed">
-                        {project.story}
-                      </p>
+                      <p className="text-dark-500 text-xs sm:text-sm leading-relaxed">{project.story}</p>
                     )}
                   </div>
-                </div>
+                </article>
               </AnimateIn>
             ))}
           </div>
-        )}
-
-        {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {rest.map((project, i) => (
-            <AnimateIn key={project.id} delay={i * 80}>
-              <div className="group bg-cream-50 border border-cream-200/80 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <LazyImage
-                    src={project.photo}
-                    alt={project.title}
-                    className="w-full h-full"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3">
-                    <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-dark-600">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-bold text-dark-900 mb-1 group-hover:text-accent transition-colors">
-                    {project.title}
-                  </h3>
-                  {project.story && (
-                    <p className="text-dark-500 text-sm leading-relaxed">{project.story}</p>
-                  )}
-                </div>
-              </div>
-            </AnimateIn>
-          ))}
         </div>
       </div>
     </section>

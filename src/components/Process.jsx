@@ -35,35 +35,38 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="py-28 px-6 bg-dark-900 overflow-hidden">
+    <section className="py-20 sm:py-28 px-4 sm:px-6 bg-dark-900 overflow-hidden" aria-labelledby="process-heading">
       <div className="max-w-5xl mx-auto">
         <AnimateIn>
-          <div className="text-center mb-16">
-            <span className="text-accent font-medium text-sm tracking-widest uppercase">Process</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-white">
+          <div className="text-center mb-12 sm:mb-16">
+            <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">Process</span>
+            <h2 id="process-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-white">
               시공 진행 순서
             </h2>
           </div>
         </AnimateIn>
 
-        <div className="space-y-5">
+        <ol className="space-y-4 sm:space-y-5" aria-label="시공 진행 단계">
           {steps.map((step, i) => (
             <AnimateIn key={step.num} delay={i * 120} direction={i % 2 === 0 ? 'left' : 'right'}>
-              <div className="flex gap-5 items-start group">
-                <div className="flex-shrink-0 w-14 h-14 bg-dark-800 border border-dark-700 rounded-xl flex items-center justify-center group-hover:border-accent/50 transition-colors">
-                  <span className="text-accent font-bold font-mono">{step.num}</span>
+              <li className="flex gap-3 sm:gap-5 items-start group">
+                <div 
+                  className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-dark-800 border border-dark-700 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:border-accent/50 transition-colors"
+                  aria-hidden="true"
+                >
+                  <span className="text-accent font-bold font-mono text-sm sm:text-base">{step.num}</span>
                 </div>
-                <div className="flex-1 bg-dark-800/50 rounded-xl p-6 border border-dark-700/50 group-hover:border-accent/20 transition-colors">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl">{step.icon}</span>
-                    <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                <div className="flex-1 bg-dark-800/50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-dark-700/50 group-hover:border-accent/20 transition-colors">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">
+                    <span className="text-xl sm:text-2xl" aria-hidden="true">{step.icon}</span>
+                    <h3 className="text-base sm:text-lg font-bold text-white">{step.title}</h3>
                   </div>
-                  <p className="text-dark-400 leading-relaxed">{step.desc}</p>
+                  <p className="text-dark-400 leading-relaxed text-sm sm:text-base">{step.desc}</p>
                 </div>
-              </div>
+              </li>
             </AnimateIn>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   )
