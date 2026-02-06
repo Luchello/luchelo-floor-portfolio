@@ -1,3 +1,5 @@
+import { AnimateIn } from '../hooks/useScrollAnimation'
+
 const steps = [
   {
     num: '01',
@@ -33,32 +35,33 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="py-24 px-6 bg-dark-900">
+    <section className="py-28 px-6 bg-dark-900 overflow-hidden">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-accent font-medium text-sm tracking-wider">PROCESS</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-white">
-            시공 진행 순서
-          </h2>
-        </div>
+        <AnimateIn>
+          <div className="text-center mb-16">
+            <span className="text-accent font-medium text-sm tracking-widest uppercase">Process</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-white">
+              시공 진행 순서
+            </h2>
+          </div>
+        </AnimateIn>
 
-        <div className="space-y-6">
+        <div className="space-y-5">
           {steps.map((step, i) => (
-            <div key={step.num} className="flex gap-6 items-start">
-              {/* Number */}
-              <div className="flex-shrink-0 w-14 h-14 bg-dark-800 border border-dark-700 rounded-xl flex items-center justify-center">
-                <span className="text-accent font-bold font-mono">{step.num}</span>
-              </div>
-
-              {/* Content */}
-              <div className="flex-1 bg-dark-800/50 rounded-xl p-6 border border-dark-700/50">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="text-2xl">{step.icon}</span>
-                  <h3 className="text-lg font-bold text-white">{step.title}</h3>
+            <AnimateIn key={step.num} delay={i * 120} direction={i % 2 === 0 ? 'left' : 'right'}>
+              <div className="flex gap-5 items-start group">
+                <div className="flex-shrink-0 w-14 h-14 bg-dark-800 border border-dark-700 rounded-xl flex items-center justify-center group-hover:border-accent/50 transition-colors">
+                  <span className="text-accent font-bold font-mono">{step.num}</span>
                 </div>
-                <p className="text-dark-400 leading-relaxed">{step.desc}</p>
+                <div className="flex-1 bg-dark-800/50 rounded-xl p-6 border border-dark-700/50 group-hover:border-accent/20 transition-colors">
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-2xl">{step.icon}</span>
+                    <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                  </div>
+                  <p className="text-dark-400 leading-relaxed">{step.desc}</p>
+                </div>
               </div>
-            </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

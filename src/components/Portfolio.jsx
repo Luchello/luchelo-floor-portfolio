@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { AnimateIn } from '../hooks/useScrollAnimation'
+import LazyImage from './LazyImage'
 
 const projects = [
-  // ── 스토리가 있는 메인 사진들 ──
   {
     id: 1,
     title: '한옥 옥상 바닥미장',
@@ -26,22 +27,18 @@ const projects = [
     story: '산 속 펜션 옥상에서 해 질 녘까지 이어진 마감 작업. 이런 풍경 속에서 일할 수 있다는 게 이 일의 매력입니다.',
     featured: true,
   },
-  // ── 현장 사진들 ──
   {
     id: 4,
     title: '대형 공장 바닥 타설 준비',
     category: '타설',
     photo: './photos/factory-rebar.jpg',
     story: '수천 평 공장 부지의 철근 배근이 끝나고, 펌프카와 레미콘이 대기 중. 대규모 타설의 시작입니다.',
-    featured: false,
   },
   {
     id: 5,
     title: '공장 부지 배근 현장',
     category: '타설',
     photo: './photos/factory-rebar2.jpg',
-    story: null,
-    featured: false,
   },
   {
     id: 6,
@@ -49,15 +46,12 @@ const projects = [
     category: '마감',
     photo: './photos/slab-finish.jpg',
     story: '넓은 면적의 콘크리트가 한 면 한 면 깔끔하게 마감된 모습. 수평이 생명입니다.',
-    featured: false,
   },
   {
     id: 7,
     title: '건물 구조체 타설',
     category: '타설',
     photo: './photos/building-pour.jpg',
-    story: null,
-    featured: false,
   },
   {
     id: 8,
@@ -65,15 +59,12 @@ const projects = [
     category: '타설',
     photo: './photos/foundation-slab.jpg',
     story: '거푸집 안에 타설된 기초 슬래브. 건물의 첫 번째 바닥이 완성되는 순간입니다.',
-    featured: false,
   },
   {
     id: 9,
     title: '옥상 바닥 마감',
     category: '마감',
     photo: './photos/rooftop-finish.jpg',
-    story: null,
-    featured: false,
   },
   {
     id: 10,
@@ -81,15 +72,12 @@ const projects = [
     category: '타설',
     photo: './photos/pump-sunset.jpg',
     story: '하루 일과가 끝나갈 무렵의 펌프카 실루엣. 콘크리트가 굳기 전까지 멈출 수 없는 현장의 하루.',
-    featured: false,
   },
   {
     id: 11,
     title: '철근 배근 야간 타설',
     category: '타설',
     photo: './photos/rebar-pour.jpg',
-    story: null,
-    featured: false,
   },
 ]
 
@@ -106,98 +94,98 @@ export default function Portfolio() {
   const rest = filtered.filter(p => !p.featured)
 
   return (
-    <section id="portfolio" className="py-24 px-6 bg-white">
+    <section id="portfolio" className="py-28 px-6 bg-white">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <span className="text-accent font-medium text-sm tracking-wider">PORTFOLIO</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
-            시공 현장
-          </h2>
-          <p className="text-dark-500 mt-3">
-            직접 작업한 현장 사진입니다
-          </p>
-        </div>
+        <AnimateIn>
+          <div className="text-center mb-12">
+            <span className="text-accent font-medium text-sm tracking-widest uppercase">Portfolio</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+              시공 현장
+            </h2>
+            <p className="text-dark-500 mt-3">
+              직접 작업한 현장 사진입니다
+            </p>
+          </div>
+        </AnimateIn>
 
-        {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
-              className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                active === cat
-                  ? 'bg-accent text-white shadow-sm'
-                  : 'bg-cream-100 text-dark-500 hover:bg-cream-200'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+        <AnimateIn delay={100}>
+          <div className="flex flex-wrap justify-center gap-2 mb-10">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActive(cat)}
+                className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all ${
+                  active === cat
+                    ? 'bg-accent text-white shadow-md shadow-accent/20'
+                    : 'bg-cream-100 text-dark-500 hover:bg-cream-200'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </AnimateIn>
 
-        {/* Featured - 스토리가 있는 대형 카드 */}
+        {/* Featured */}
         {featured.length > 0 && (
           <div className="space-y-6 mb-8">
-            {featured.map(project => (
-              <div
-                key={project.id}
-                className="group relative rounded-2xl overflow-hidden"
-              >
-                <div className="aspect-[21/9] md:aspect-[21/8]">
-                  <img 
-                    src={project.photo} 
+            {featured.map((project, i) => (
+              <AnimateIn key={project.id} delay={i * 150}>
+                <div className="group relative rounded-2xl overflow-hidden cursor-default">
+                  <LazyImage
+                    src={project.photo}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                    className="aspect-[21/9] md:aspect-[21/8]"
                   />
+                  {/* Hover zoom on the image inside LazyImage */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                    <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-3 inline-block">
+                      {project.category}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                      {project.title}
+                    </h3>
+                    {project.story && (
+                      <p className="text-cream-300/80 text-sm md:text-base max-w-2xl leading-relaxed">
+                        {project.story}
+                      </p>
+                    )}
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                  <span className="bg-accent/90 text-white text-xs font-medium px-3 py-1 rounded-full mb-3 inline-block">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                    {project.title}
-                  </h3>
-                  {project.story && (
-                    <p className="text-cream-300/80 text-sm md:text-base max-w-2xl leading-relaxed">
-                      {project.story}
-                    </p>
-                  )}
-                </div>
-              </div>
+              </AnimateIn>
             ))}
           </div>
         )}
 
-        {/* Grid - 나머지 사진들 */}
+        {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {rest.map(project => (
-            <div
-              key={project.id}
-              className="group bg-cream-50 border border-cream-200/80 rounded-2xl overflow-hidden hover:shadow-lg transition-all"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                <img 
-                  src={project.photo} 
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-dark-600">
-                    {project.category}
-                  </span>
+          {rest.map((project, i) => (
+            <AnimateIn key={project.id} delay={i * 80}>
+              <div className="group bg-cream-50 border border-cream-200/80 rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <LazyImage
+                    src={project.photo}
+                    alt={project.title}
+                    className="w-full h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" />
+                  <div className="absolute bottom-3 left-3">
+                    <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-dark-600">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-bold text-dark-900 mb-1 group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                  {project.story && (
+                    <p className="text-dark-500 text-sm leading-relaxed">{project.story}</p>
+                  )}
                 </div>
               </div>
-              <div className="p-5">
-                <h3 className="font-bold text-dark-900 mb-1 group-hover:text-accent transition-colors">
-                  {project.title}
-                </h3>
-                {project.story && (
-                  <p className="text-dark-500 text-sm leading-relaxed">{project.story}</p>
-                )}
-              </div>
-            </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

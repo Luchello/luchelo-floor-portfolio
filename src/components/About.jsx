@@ -1,3 +1,5 @@
+import { AnimateIn } from '../hooks/useScrollAnimation'
+
 export default function About() {
   const strengths = [
     { icon: '🏗️', title: '현장 경험', desc: '다양한 현장에서 쌓은 실전 노하우' },
@@ -7,41 +9,47 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-24 px-6 bg-cream-100/50">
+    <section id="about" className="py-28 px-6 bg-cream-100/50">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-accent font-medium text-sm tracking-wider">ABOUT US</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
-            대성몰탈을 소개합니다
-          </h2>
-        </div>
-
-        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-cream-200/80 mb-12">
-          <div className="space-y-4 text-dark-600 leading-relaxed text-lg text-center max-w-3xl mx-auto">
-            <p>
-              안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
-            </p>
-            <p>
-              수도권을 중심으로 에폭시, 셀프레벨링, 폴리싱, 우레탄 방수 등
-              바닥미장 전반에 걸친 시공을 전문으로 하고 있습니다.
-            </p>
-            <p>
-              현장마다 상황이 다르기에, 직접 방문해서 바닥 상태를 확인한 후
-              가장 적합한 공법과 재료를 제안드립니다.
-            </p>
-            <p className="text-accent font-medium">
-              현장 방문 견적은 무료입니다. 부담 없이 연락 주세요.
-            </p>
+        <AnimateIn>
+          <div className="text-center mb-16">
+            <span className="text-accent font-medium text-sm tracking-widest uppercase">About Us</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+              대성몰탈을 소개합니다
+            </h2>
           </div>
-        </div>
+        </AnimateIn>
+
+        <AnimateIn delay={100}>
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-cream-200/80 mb-12">
+            <div className="space-y-4 text-dark-600 leading-relaxed text-lg text-center max-w-3xl mx-auto">
+              <p>
+                안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
+              </p>
+              <p>
+                수도권을 중심으로 에폭시, 셀프레벨링, 폴리싱, 우레탄 방수 등
+                바닥미장 전반에 걸친 시공을 전문으로 하고 있습니다.
+              </p>
+              <p>
+                현장마다 상황이 다르기에, 직접 방문하여 바닥 상태를 확인한 후
+                가장 적합한 공법과 재료를 제안드립니다.
+              </p>
+              <p className="text-accent font-semibold pt-2">
+                현장 방문 견적은 무료입니다. 부담 없이 연락 주세요.
+              </p>
+            </div>
+          </div>
+        </AnimateIn>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {strengths.map(item => (
-            <div key={item.title} className="bg-white rounded-xl p-6 text-center border border-cream-200/80 shadow-sm">
-              <span className="text-3xl block mb-3">{item.icon}</span>
-              <h3 className="font-bold text-dark-800 mb-1">{item.title}</h3>
-              <p className="text-dark-500 text-sm">{item.desc}</p>
-            </div>
+          {strengths.map((item, i) => (
+            <AnimateIn key={item.title} delay={200 + i * 100}>
+              <div className="bg-white rounded-2xl p-6 text-center border border-cream-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
+                <span className="text-3xl block mb-3">{item.icon}</span>
+                <h3 className="font-bold text-dark-800 mb-1">{item.title}</h3>
+                <p className="text-dark-500 text-sm">{item.desc}</p>
+              </div>
+            </AnimateIn>
           ))}
         </div>
       </div>

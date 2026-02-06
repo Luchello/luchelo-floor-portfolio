@@ -1,3 +1,6 @@
+import { AnimateIn } from '../hooks/useScrollAnimation'
+import LazyImage from './LazyImage'
+
 const equipment = [
   {
     photo: './photos/trowels-pair.jpg',
@@ -23,33 +26,35 @@ const equipment = [
 
 export default function Equipment() {
   return (
-    <section className="py-24 px-6 bg-cream-100/50">
+    <section className="py-28 px-6 bg-cream-100/50">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <span className="text-accent font-medium text-sm tracking-wider">EQUIPMENT</span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
-            보유 장비
-          </h2>
-          <p className="text-dark-500 mt-3">
-            자체 장비로 빠르고 정확한 시공이 가능합니다
-          </p>
-        </div>
+        <AnimateIn>
+          <div className="text-center mb-14">
+            <span className="text-accent font-medium text-sm tracking-widest uppercase">Equipment</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+              보유 장비
+            </h2>
+            <p className="text-dark-500 mt-3">
+              자체 장비로 빠르고 정확한 시공이 가능합니다
+            </p>
+          </div>
+        </AnimateIn>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
-          {equipment.map(item => (
-            <div key={item.name} className="group bg-white rounded-2xl overflow-hidden border border-cream-200/80 shadow-sm hover:shadow-md transition-all">
-              <div className="aspect-[4/3] overflow-hidden">
-                <img 
-                  src={item.photo} 
+          {equipment.map((item, i) => (
+            <AnimateIn key={item.name} delay={i * 100}>
+              <div className="group bg-white rounded-2xl overflow-hidden border border-cream-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all h-full">
+                <LazyImage
+                  src={item.photo}
                   alt={item.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="aspect-[4/3]"
                 />
+                <div className="p-5">
+                  <h3 className="font-bold text-dark-800 text-sm mb-1">{item.name}</h3>
+                  <p className="text-dark-500 text-xs leading-relaxed">{item.desc}</p>
+                </div>
               </div>
-              <div className="p-4">
-                <h3 className="font-bold text-dark-800 text-sm mb-1">{item.name}</h3>
-                <p className="text-dark-500 text-xs leading-relaxed">{item.desc}</p>
-              </div>
-            </div>
+            </AnimateIn>
           ))}
         </div>
       </div>
