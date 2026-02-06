@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-export default function LazyImage({ src, alt, className = '', ...props }) {
+export default function LazyImage({ src, alt, className = '', onClick, ...props }) {
   const [loaded, setLoaded] = useState(false)
   const [inView, setInView] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
@@ -35,8 +35,26 @@ export default function LazyImage({ src, alt, className = '', ...props }) {
     ? '' 
     : 'transition-opacity duration-500'
 
+  const clickableProps = onClick ? {
+    onClick,
+    role: 'button',
+    tabIndex: 0,
+    onKeyDown: (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault()
+        onClick(e)
+      }
+    },
+    style: { cursor: 'pointer' }
+  } : {}
+
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`} {...props}>
+    <div 
+      ref={ref} 
+      className={`relative overflow-hidden ${className}`} 
+      {...clickableProps}
+      {...props}
+    >
       {/* Placeholder */}
       <div 
         className={`absolute inset-0 bg-cream-200 ${transitionClass} ${loaded ? 'opacity-0' : 'opacity-100'}`} 

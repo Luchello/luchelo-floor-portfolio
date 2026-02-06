@@ -107,7 +107,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className={`text-sm font-medium transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded px-1 py-0.5 ${
+              className={`text-sm font-medium transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded px-1 py-0.5 nav-link-animated ${
                 scrolled 
                   ? activeSection === link.id
                     ? 'text-accent'
@@ -119,19 +119,11 @@ export default function Navbar() {
               aria-current={activeSection === link.id ? 'true' : undefined}
             >
               {link.label}
-              {activeSection === link.id && (
-                <span 
-                  className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full transition-colors ${
-                    scrolled ? 'bg-accent' : 'bg-white'
-                  }`}
-                  aria-hidden="true"
-                />
-              )}
             </a>
           ))}
           <a
             href="tel:010-5535-7129"
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press ${
               scrolled
                 ? 'bg-accent text-white hover:bg-accent-dark'
                 : 'bg-white/15 backdrop-blur-sm text-white hover:bg-white/25'

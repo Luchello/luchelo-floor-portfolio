@@ -1,13 +1,44 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false)
+  const [parallaxY, setParallaxY] = useState(0)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const sectionRef = useRef(null)
 
+  // Check for reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    const handleChange = (e) => setPrefersReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  // Preload hero image
   useEffect(() => {
     const img = new Image()
     img.onload = () => setLoaded(true)
     img.src = './photos/mountain-trowel.jpg'
   }, [])
+
+  // Parallax effect on scroll
+  useEffect(() => {
+    if (prefersReducedMotion) return
+
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect()
+        // Only apply parallax when section is in view
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          setParallaxY(window.scrollY * 0.3)
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [prefersReducedMotion])
 
   const handlePortfolioClick = (e) => {
     e.preventDefault()
@@ -24,17 +55,21 @@ export default function Hero() {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      ref={sectionRef}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden noise-overlay"
       aria-label="대성몰탈 메인 배너"
     >
-      {/* Background */}
+      {/* Background with parallax */}
       <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-b from-dark-950/70 via-dark-900/50 to-dark-950/80 z-10" />
-        <div className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+          style={!prefersReducedMotion ? { transform: `translateY(${parallaxY}px)` } : undefined}
+        >
           <img 
             src="./photos/mountain-trowel.jpg" 
             alt="산 배경에서 파워트라웰로 바닥미장 마감 작업을 진행하는 현장" 
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-[120%] object-cover"
           />
         </div>
         <div className="absolute inset-0 bg-dark-800" />
@@ -47,11 +82,11 @@ export default function Hero() {
           <span className="text-cream-300 text-xs sm:text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-4 sm:mb-6 tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-4 sm:mb-6 tracking-tight hero-text-shadow">
           대성몰탈
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-light">
+        <p className="text-base sm:text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-light hero-text-shadow">
           방통 · 재물 · 바닥미장
         </p>
         <p className="text-sm sm:text-base text-cream-400/50 mb-8 sm:mb-12">
@@ -61,7 +96,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <a
             href="tel:010-5535-7129"
-            className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center"
+            className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
             aria-label="전화 걸기: 010-5535-7129"
           >
             <svg className="w-5 h-5 group-hover:animate-pulse motion-reduce:group-hover:animate-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -72,7 +107,7 @@ export default function Hero() {
           <a
             href="#portfolio"
             onClick={handlePortfolioClick}
-            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border border-cream-300/20 hover:border-white/40 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-medium transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center"
+            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border border-cream-300/20 hover:border-white/40 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-medium transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
           >
             시공 사례 보기
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

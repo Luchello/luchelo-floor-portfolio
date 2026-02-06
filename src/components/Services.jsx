@@ -29,15 +29,15 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 sm:py-28 px-4 sm:px-6 bg-cream-50">
+    <section id="services" className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-50">
       <div className="max-w-6xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-10 sm:mb-14">
             <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">Services</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900 section-header tracking-wide">
               시공 분야
             </h2>
-            <p className="text-dark-500 mt-3 max-w-lg mx-auto text-sm sm:text-base">
+            <p className="text-dark-500 mt-3 max-w-lg mx-auto text-sm sm:text-base leading-loose">
               현장에 맞는 최적의 공법을 제안드립니다
             </p>
           </div>
@@ -46,12 +46,12 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
           {services.map((svc, i) => (
             <AnimateIn key={svc.title} delay={i * 100}>
-              <article className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-accent/20 transition-all h-full">
+              <article className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-accent/20 transition-all h-full service-card-border">
                 <span className="text-3xl sm:text-4xl block mb-4 sm:mb-5" aria-hidden="true">{svc.icon}</span>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-dark-900 group-hover:text-accent transition-colors">
                   {svc.title}
                 </h3>
-                <p className="text-dark-500 leading-relaxed mb-4 sm:mb-5 text-sm sm:text-base">{svc.desc}</p>
+                <p className="text-dark-500 leading-loose mb-4 sm:mb-5 text-sm sm:text-base">{svc.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {svc.tags.map(tag => (
                     <span key={tag} className="bg-cream-100 text-dark-600 text-xs font-medium px-3 py-1.5 rounded-full">

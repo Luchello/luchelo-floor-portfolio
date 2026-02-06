@@ -58,8 +58,8 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px; /* Base font size for readability */
-  line-height: 1.5;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* Ensure minimum readable text size on mobile */
@@ -145,4 +145,188 @@ img {
   textarea {
     font-size: 16px; /* Prevents zoom on iOS */
   }
+}
+
+/* ========================================
+   ROUND 12: Noise Texture Overlay
+   ======================================== */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  z-index: 1;
+}
+
+/* ========================================
+   ROUND 14: Section header typography
+   ======================================== */
+.section-header {
+  letter-spacing: 0.025em;
+}
+
+/* Text shadow for hero elements */
+.hero-text-shadow {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   ROUND 13: Nav link underline animation
+   ======================================== */
+.nav-link-animated {
+  position: relative;
+}
+
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: width 0.3s ease;
+}
+
+.nav-link-animated:hover::after {
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link-animated::after {
+    transition: none;
+  }
+}
+
+/* ========================================
+   ROUND 13: CTA Button press effect
+   ======================================== */
+.btn-press {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.95) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-press:active {
+    transform: none !important;
+  }
+}
+
+/* ========================================
+   ROUND 13: Service card top border animation
+   ======================================== */
+.service-card-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.service-card-border:hover::before {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-card-border::before {
+    transition: none;
+  }
+  .service-card-border:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+/* ========================================
+   ROUND 13: Contact form states
+   ======================================== */
+.form-sending {
+  position: relative;
+  pointer-events: none;
+}
+
+.form-sending::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(254, 252, 249, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+}
+
+.form-success {
+  animation: success-pulse 0.5s ease;
+}
+
+@keyframes success-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .form-success {
+    animation: none;
+  }
+}
+
+/* ========================================
+   ROUND 13: Image hover zoom
+   ======================================== */
+.img-zoom-container {
+  overflow: hidden;
+}
+
+.img-zoom {
+  transition: transform 0.4s ease;
+}
+
+.img-zoom-container:hover .img-zoom {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .img-zoom {
+    transition: none;
+  }
+  .img-zoom-container:hover .img-zoom {
+    transform: none;
+  }
+}
+
+/* ========================================
+   Section divider gradient
+   ======================================== */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-cream-300),
+    transparent
+  );
+  margin: 0 auto;
+  max-width: 80%;
 }

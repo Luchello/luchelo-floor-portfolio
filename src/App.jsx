@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Hero from './components/Hero'
 import About from './components/About'
+import Stats from './components/Stats'
 import Portfolio from './components/Portfolio'
 import Services from './components/Services'
 import Equipment from './components/Equipment'
@@ -38,6 +39,7 @@ function App() {
       <main id="main-content" role="main">
         <Hero />
         <About />
+        <Stats />
         <Services />
         <Portfolio />
         <Equipment />

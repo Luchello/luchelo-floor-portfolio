@@ -9,12 +9,12 @@ export default function About() {
   ]
 
   return (
-    <section id="about" className="py-20 sm:py-28 px-4 sm:px-6 bg-cream-100/50">
+    <section id="about" className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-100/50">
       <div className="max-w-5xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-12 sm:mb-16">
             <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">About Us</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900 section-header tracking-wide">
               대성몰탈을 소개합니다
             </h2>
           </div>
@@ -22,7 +22,7 @@ export default function About() {
 
         <AnimateIn delay={100}>
           <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-sm border border-cream-200/80 mb-10 sm:mb-12">
-            <div className="space-y-4 text-dark-600 leading-relaxed text-base sm:text-lg text-center max-w-3xl mx-auto">
+            <div className="space-y-4 text-dark-600 leading-loose text-base sm:text-lg text-center max-w-3xl mx-auto">
               <p>
                 안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
               </p>
@@ -41,13 +41,16 @@ export default function About() {
           </div>
         </AnimateIn>
 
+        {/* Separator */}
+        <div className="section-divider mb-10 sm:mb-12" aria-hidden="true" />
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {strengths.map((item, i) => (
             <AnimateIn key={item.title} delay={200 + i * 100}>
               <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center border border-cream-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all h-full">
                 <span className="text-2xl sm:text-3xl block mb-2 sm:mb-3" aria-hidden="true">{item.icon}</span>
                 <h3 className="font-bold text-dark-800 mb-1 text-sm sm:text-base">{item.title}</h3>
-                <p className="text-dark-500 text-xs sm:text-sm">{item.desc}</p>
+                <p className="text-dark-500 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
               </div>
             </AnimateIn>
           ))}

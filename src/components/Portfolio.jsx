@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { AnimateIn } from '../hooks/useScrollAnimation'
 import LazyImage from './LazyImage'
+import Lightbox from './Lightbox'
 
 const projects = [
   {
@@ -85,6 +86,8 @@ const categories = ['전체', '방통', '재물']
 
 export default function Portfolio() {
   const [active, setActive] = useState('전체')
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
 
   const filtered = active === '전체'
     ? projects
@@ -93,16 +96,26 @@ export default function Portfolio() {
   const featured = filtered.filter(p => p.featured)
   const rest = filtered.filter(p => !p.featured)
 
+  const allFiltered = [...featured, ...rest]
+
+  const openLightbox = (projectId) => {
+    const index = allFiltered.findIndex(p => p.id === projectId)
+    if (index !== -1) {
+      setLightboxIndex(index)
+      setLightboxOpen(true)
+    }
+  }
+
   return (
-    <section id="portfolio" className="py-20 sm:py-28 px-4 sm:px-6 bg-white">
+    <section id="portfolio" className="py-24 sm:py-32 px-4 sm:px-6 bg-white">
       <div className="max-w-6xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-10 sm:mb-12">
             <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">Portfolio</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900 section-header tracking-wide">
               시공 현장
             </h2>
-            <p className="text-dark-500 mt-3 text-sm sm:text-base">
+            <p className="text-dark-500 mt-3 text-sm sm:text-base leading-loose">
               직접 작업한 현장 사진입니다
             </p>
           </div>
@@ -117,7 +130,7 @@ export default function Portfolio() {
                 role="tab"
                 aria-selected={active === cat}
                 aria-controls="portfolio-grid"
-                className={`px-5 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+                className={`px-5 sm:px-6 py-2.5 rounded-full text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press ${
                   active === cat
                     ? 'bg-accent text-white shadow-md shadow-accent/20'
                     : 'bg-cream-100 text-dark-500 hover:bg-cream-200'
@@ -135,11 +148,23 @@ export default function Portfolio() {
             <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
               {featured.map((project, i) => (
                 <AnimateIn key={project.id} delay={i * 150}>
-                  <article className="group relative rounded-xl sm:rounded-2xl overflow-hidden cursor-default">
+                  <article 
+                    className="group relative rounded-xl sm:rounded-2xl overflow-hidden cursor-pointer img-zoom-container"
+                    onClick={() => openLightbox(project.id)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault()
+                        openLightbox(project.id)
+                      }
+                    }}
+                    aria-label={`${project.title} 사진 크게 보기`}
+                  >
                     <LazyImage
                       src={project.photo}
                       alt={`${project.title} - ${project.category} 작업 현장`}
-                      className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8]"
+                      className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8] img-zoom"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
@@ -165,12 +190,24 @@ export default function Portfolio() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {rest.map((project, i) => (
               <AnimateIn key={project.id} delay={i * 80}>
-                <article className="group bg-cream-50 border border-cream-200/80 rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full">
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                <article 
+                  className="group bg-cream-50 border border-cream-200/80 rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full cursor-pointer"
+                  onClick={() => openLightbox(project.id)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault()
+                      openLightbox(project.id)
+                    }
+                  }}
+                  aria-label={`${project.title} 사진 크게 보기`}
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden img-zoom-container">
                     <LazyImage
                       src={project.photo}
                       alt={`${project.title} - ${project.category} 작업 현장`}
-                      className="w-full h-full"
+                      className="w-full h-full img-zoom"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-3 left-3">
@@ -193,6 +230,15 @@ export default function Portfolio() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <Lightbox
+          images={allFiltered}
+          initialIndex={lightboxIndex}
+          onClose={() => setLightboxOpen(false)}
+        />
+      )}
     </section>
   )
 }
