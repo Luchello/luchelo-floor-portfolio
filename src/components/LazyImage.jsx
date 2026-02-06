@@ -1,10 +1,14 @@
 import { useState, useRef, useEffect } from 'react'
 
-export default function LazyImage({ src, alt, className = '', onClick, ...props }) {
+export default function LazyImage({ src, alt, className = '', onClick, thumbnail = false, eager = false, ...props }) {
   const [loaded, setLoaded] = useState(false)
-  const [inView, setInView] = useState(false)
+  const [inView, setInView] = useState(eager) // eager images are immediately "in view"
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const ref = useRef()
+
+  // Generate WebP path from JPG
+  const webpSrc = src.replace('.jpg', '.webp')
+  const thumbnailSrc = thumbnail ? src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp') : webpSrc
 
   useEffect(() => {
     // Check for reduced motion preference
@@ -18,6 +22,8 @@ export default function LazyImage({ src, alt, className = '', onClick, ...props 
   }, [])
 
   useEffect(() => {
+    if (eager) return // Skip observer for eager images
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,7 +35,7 @@ export default function LazyImage({ src, alt, className = '', onClick, ...props 
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
-  }, [])
+  }, [eager])
 
   const transitionClass = prefersReducedMotion 
     ? '' 
@@ -62,13 +68,16 @@ export default function LazyImage({ src, alt, className = '', onClick, ...props 
       />
       
       {inView && (
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
-          className={`w-full h-full object-cover ${transitionClass} ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        />
+        <picture>
+          <source srcSet={thumbnailSrc} type="image/webp" />
+          <img
+            src={src}
+            alt={alt}
+            loading={eager ? 'eager' : 'lazy'}
+            onLoad={() => setLoaded(true)}
+            className={`w-full h-full object-cover ${transitionClass} ${loaded ? 'opacity-100' : 'opacity-0'}`}
+          />
+        </picture>
       )}
     </div>
   )

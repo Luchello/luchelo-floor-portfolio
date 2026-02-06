@@ -16,11 +16,15 @@ export default function Hero() {
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
-  // Preload hero image
+  // Preload hero image (WebP first, fallback to JPG)
   useEffect(() => {
     const img = new Image()
     img.onload = () => setLoaded(true)
-    img.src = './photos/mountain-trowel.jpg'
+    // Try WebP first
+    img.src = './photos/mountain-trowel.webp'
+    img.onerror = () => {
+      img.src = './photos/mountain-trowel.jpg'
+    }
   }, [])
 
   // Parallax effect on scroll + hide scroll indicator
@@ -72,11 +76,16 @@ export default function Hero() {
           className={`absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 ${loaded ? 'opacity-100' : 'opacity-0'}`}
           style={!prefersReducedMotion ? { transform: `translateY(${parallaxY}px)` } : undefined}
         >
-          <img 
-            src="./photos/mountain-trowel.jpg" 
-            alt="산 배경에서 파워트라웰로 바닥미장 마감 작업을 진행하는 현장" 
-            className="absolute inset-0 w-full h-[120%] object-cover"
-          />
+          <picture>
+            <source srcSet="./photos/mountain-trowel.webp" type="image/webp" />
+            <img 
+              src="./photos/mountain-trowel.jpg" 
+              alt="산 배경에서 파워트라웰로 바닥미장 마감 작업을 진행하는 현장" 
+              className="absolute inset-0 w-full h-[120%] object-cover"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
         <div className="absolute inset-0 bg-dark-800" />
       </div>

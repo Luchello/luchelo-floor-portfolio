@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { AnimateIn } from '../hooks/useScrollAnimation'
 
 export default function Contact() {
-  const [formState, setFormState] = useState('idle') // idle | sending | success
+  const [formState, setFormState] = useState('idle') // idle | confirm
+  const [formData, setFormData] = useState(null)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -12,25 +13,27 @@ export default function Contact() {
     const service = form.service.value
     const message = form.message.value
     
-    // Simulate sending state
-    setFormState('sending')
+    // Prepare SMS text (limited to keep it short)
+    const smsText = `[대성몰탈 문의] ${name} / ${phone} / ${service}${message ? ` / ${message.slice(0, 50)}` : ''}`
     
-    setTimeout(() => {
-      // 전화 연결로 폴백 — 실제 문의는 전화/카톡으로
-      const text = `[대성몰탈 문의]\n이름: ${name}\n연락처: ${phone}\n시공종류: ${service}\n내용: ${message}`
-      
-      setFormState('success')
-      
-      // Reset after showing success
-      setTimeout(() => {
-        // 카카오톡 채널 미설정 시 전화 연결
-        if (confirm(`문의 내용을 확인해주세요:\n\n${text}\n\n전화로 연결하시겠습니까?`)) {
-          window.location.href = 'tel:010-5535-7129'
-        }
-        setFormState('idle')
-        form.reset()
-      }, 800)
-    }, 500)
+    setFormData({ name, phone, service, message, smsText })
+    setFormState('confirm')
+  }
+
+  const handleClose = () => {
+    setFormState('idle')
+    setFormData(null)
+  }
+
+  const handleSMS = () => {
+    const encoded = encodeURIComponent(formData.smsText)
+    window.location.href = `sms:010-5535-7129?body=${encoded}`
+    handleClose()
+  }
+
+  const handleCall = () => {
+    window.location.href = 'tel:010-5535-7129'
+    handleClose()
   }
 
   return (
@@ -100,35 +103,8 @@ export default function Contact() {
           <AnimateIn delay={150} className="md:col-span-3">
             <form 
               onSubmit={handleSubmit} 
-              className={`bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm space-y-4 relative transition-all ${
-                formState === 'success' ? 'form-success' : ''
-              }`}
+              className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm space-y-4 relative"
             >
-              {/* Sending overlay */}
-              {formState === 'sending' && (
-                <div className="absolute inset-0 bg-white/80 rounded-xl sm:rounded-2xl flex items-center justify-center z-10">
-                  <div className="flex items-center gap-3 text-accent">
-                    <svg className="w-6 h-6 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    <span className="font-medium">전송 중...</span>
-                  </div>
-                </div>
-              )}
-
-              {/* Success overlay */}
-              {formState === 'success' && (
-                <div className="absolute inset-0 bg-white/90 rounded-xl sm:rounded-2xl flex items-center justify-center z-10">
-                  <div className="flex items-center gap-3 text-green-600">
-                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-bold text-lg">문의 완료!</span>
-                  </div>
-                </div>
-              )}
-
               <h3 className="font-bold text-dark-800 text-lg mb-4">온라인 문의</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
@@ -139,8 +115,7 @@ export default function Contact() {
                     name="name"
                     placeholder="이름"
                     required
-                    disabled={formState !== 'idle'}
-                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-800 placeholder:text-dark-400 transition-all text-base disabled:opacity-50"
+                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-800 placeholder:text-dark-400 transition-all text-base"
                   />
                 </div>
                 <div>
@@ -151,8 +126,7 @@ export default function Contact() {
                     name="phone"
                     placeholder="연락처"
                     required
-                    disabled={formState !== 'idle'}
-                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-800 placeholder:text-dark-400 transition-all text-base disabled:opacity-50"
+                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-800 placeholder:text-dark-400 transition-all text-base"
                   />
                 </div>
               </div>
@@ -162,8 +136,7 @@ export default function Contact() {
                   id="contact-service"
                   name="service"
                   required
-                  disabled={formState !== 'idle'}
-                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-600 transition-all text-base disabled:opacity-50"
+                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-600 transition-all text-base"
                 >
                   <option value="">시공 종류 선택</option>
                   <option value="방통">방통 시공</option>
@@ -179,8 +152,7 @@ export default function Contact() {
                   name="message"
                   rows={4}
                   placeholder="현장 주소, 면적, 요청사항 등을 적어주세요"
-                  disabled={formState !== 'idle'}
-                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[120px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-dark-800 placeholder:text-dark-400 transition-all text-base disabled:opacity-50"
+                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[120px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-dark-800 placeholder:text-dark-400 transition-all text-base"
                 />
                 <p className="text-xs text-dark-400 mt-2 px-1">
                   현장 주소, 면적, 요청사항 등
@@ -188,8 +160,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                disabled={formState !== 'idle'}
-                className="w-full bg-accent hover:bg-accent-dark text-white py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press disabled:opacity-50 disabled:pointer-events-none"
+                className="w-full bg-accent hover:bg-accent-dark text-white py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
               >
                 문의하기
               </button>
@@ -197,6 +168,61 @@ export default function Contact() {
           </AnimateIn>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {formState === 'confirm' && formData && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark-900/60 backdrop-blur-sm"
+          onClick={handleClose}
+        >
+          <div 
+            className="bg-white rounded-2xl p-6 sm:p-8 w-full max-w-md shadow-2xl transform transition-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h3 className="text-xl font-bold text-dark-900 mb-4 text-center">
+              문의 내용 확인
+            </h3>
+            
+            <div className="bg-cream-50 rounded-xl p-4 mb-6 text-sm space-y-2">
+              <p><span className="text-dark-500">이름:</span> <span className="font-medium text-dark-800">{formData.name}</span></p>
+              <p><span className="text-dark-500">연락처:</span> <span className="font-medium text-dark-800">{formData.phone}</span></p>
+              <p><span className="text-dark-500">시공종류:</span> <span className="font-medium text-dark-800">{formData.service}</span></p>
+              {formData.message && (
+                <p><span className="text-dark-500">내용:</span> <span className="font-medium text-dark-800">{formData.message}</span></p>
+              )}
+            </div>
+
+            <p className="text-center text-dark-600 text-sm mb-5">
+              연락 방법을 선택해주세요
+            </p>
+
+            <div className="space-y-3">
+              <button
+                onClick={handleSMS}
+                className="w-full flex items-center justify-center gap-3 bg-accent hover:bg-accent-dark text-white py-4 rounded-xl font-bold transition-all btn-press"
+              >
+                <span className="text-lg">📱</span>
+                SMS 문자 보내기
+              </button>
+              
+              <button
+                onClick={handleCall}
+                className="w-full flex items-center justify-center gap-3 bg-dark-800 hover:bg-dark-900 text-white py-4 rounded-xl font-bold transition-all btn-press"
+              >
+                <span className="text-lg">📞</span>
+                전화 걸기
+              </button>
+              
+              <button
+                onClick={handleClose}
+                className="w-full py-3 text-dark-500 hover:text-dark-700 text-sm font-medium transition-colors"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

@@ -1,17 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, lazy, Suspense } from 'react'
 import Hero from './components/Hero'
-import About from './components/About'
-import Stats from './components/Stats'
-import Portfolio from './components/Portfolio'
-import Services from './components/Services'
-import Equipment from './components/Equipment'
-import Process from './components/Process'
-import Contact from './components/Contact'
 import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import ScrollTop from './components/ScrollTop'
-import ScrollProgress from './components/ScrollProgress'
-import FloatingCTA from './components/FloatingCTA'
+
+// Lazy load below-fold components
+const About = lazy(() => import('./components/About'))
+const Stats = lazy(() => import('./components/Stats'))
+const Portfolio = lazy(() => import('./components/Portfolio'))
+const Services = lazy(() => import('./components/Services'))
+const Equipment = lazy(() => import('./components/Equipment'))
+const Process = lazy(() => import('./components/Process'))
+const Contact = lazy(() => import('./components/Contact'))
+const Footer = lazy(() => import('./components/Footer'))
+const ScrollTop = lazy(() => import('./components/ScrollTop'))
+const ScrollProgress = lazy(() => import('./components/ScrollProgress'))
+const FloatingCTA = lazy(() => import('./components/FloatingCTA'))
+
+// Minimal loading fallback
+const SectionFallback = () => <div className="py-32" aria-hidden="true" />
 
 // Wave divider component
 function WaveDivider({ fromColor, toColor, flip = false }) {
@@ -45,7 +50,9 @@ function App() {
         appLoaded ? 'opacity-100' : 'opacity-0'
       }`}
     >
-      <ScrollProgress />
+      <Suspense fallback={null}>
+        <ScrollProgress />
+      </Suspense>
       
       {/* Skip to content link for keyboard navigation */}
       <a
@@ -60,22 +67,27 @@ function App() {
       <main id="main-content" role="main">
         <Hero />
         {/* Hero has built-in wave to cream-50 */}
-        <About />
-        <Stats />
-        {/* Wave: dark Stats to light Services */}
-        <WaveDivider fromColor="#282520" toColor="#FEFCF9" />
-        <Services />
-        <Portfolio />
-        {/* Wave: white Portfolio to cream Equipment */}
-        <WaveDivider fromColor="#FFFFFF" toColor="rgba(253, 248, 240, 0.5)" />
-        <Equipment />
-        <Process />
-        <Contact />
+        
+        <Suspense fallback={<SectionFallback />}>
+          <About />
+          <Stats />
+          {/* Wave: dark Stats to light Services */}
+          <WaveDivider fromColor="#282520" toColor="#FEFCF9" />
+          <Services />
+          <Portfolio />
+          {/* Wave: white Portfolio to cream Equipment */}
+          <WaveDivider fromColor="#FFFFFF" toColor="rgba(253, 248, 240, 0.5)" />
+          <Equipment />
+          <Process />
+          <Contact />
+        </Suspense>
       </main>
       
-      <Footer />
-      <ScrollTop />
-      <FloatingCTA />
+      <Suspense fallback={null}>
+        <Footer />
+        <ScrollTop />
+        <FloatingCTA />
+      </Suspense>
     </div>
   )
 }

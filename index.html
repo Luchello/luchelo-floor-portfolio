@@ -12,6 +12,14 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://floor-portfolio.vercel.app" />
     
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#9E7B4F" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="대성몰탈" />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
+    
     <!-- Open Graph (카카오톡/SNS 공유 미리보기) -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="대성몰탈 | 방통 · 재물 바닥미장 전문" />
@@ -33,8 +41,9 @@
     <!-- Favicon (SVG) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
-    <!-- Preload hero image -->
-    <link rel="preload" as="image" href="/photos/mountain-trowel.jpg" />
+    <!-- Preload hero image (WebP with JPG fallback) -->
+    <link rel="preload" as="image" href="/photos/mountain-trowel.webp" type="image/webp" />
+    <link rel="preload" as="image" href="/photos/mountain-trowel.jpg" imagesrcset="/photos/mountain-trowel.webp" />
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />

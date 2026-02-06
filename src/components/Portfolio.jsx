@@ -208,6 +208,7 @@ export default function Portfolio() {
                       src={project.photo}
                       alt={`${project.title} - ${project.category} 작업 현장`}
                       className="w-full h-full img-zoom"
+                      thumbnail
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-900/50 via-transparent to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-3 left-3">
