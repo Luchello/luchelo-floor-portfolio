@@ -1,20 +1,12 @@
 import { useState, useEffect, useRef } from 'react'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 export default function Hero() {
   const [loaded, setLoaded] = useState(false)
   const [parallaxY, setParallaxY] = useState(0)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [scrollStarted, setScrollStarted] = useState(false)
   const sectionRef = useRef(null)
-
-  // Check for reduced motion preference
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+  const prefersReducedMotion = useReducedMotion()
 
   // Preload hero image (WebP first, fallback to JPG)
   useEffect(() => {

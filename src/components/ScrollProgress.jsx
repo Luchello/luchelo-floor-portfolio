@@ -1,17 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 export default function ScrollProgress() {
   const [progress, setProgress] = useState(0)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const rafRef = useRef(null)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+  const prefersReducedMotion = useReducedMotion()
 
   useEffect(() => {
     const updateProgress = () => {

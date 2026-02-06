@@ -1,22 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { AnimateIn } from '../hooks/useScrollAnimation'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 export default function Contact() {
   const [formState, setFormState] = useState('idle') // idle | confirm
   const [formData, setFormData] = useState(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const modalRef = useRef(null)
   const previousActiveElement = useRef(null)
-
-  // Check for reduced motion preference
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+  const prefersReducedMotion = useReducedMotion()
 
   const handleSubmit = (e) => {
     e.preventDefault()

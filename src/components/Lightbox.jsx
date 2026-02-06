@@ -1,11 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 export default function Lightbox({ images, initialIndex = 0, onClose }) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex)
   const [isVisible, setIsVisible] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const modalRef = useRef(null)
   const previousActiveElement = useRef(null)
+  const prefersReducedMotion = useReducedMotion()
   
   // Touch swipe state
   const touchStartX = useRef(null)
@@ -13,15 +14,6 @@ export default function Lightbox({ images, initialIndex = 0, onClose }) {
   const minSwipeDistance = 50
 
   const currentImage = images[currentIndex]
-
-  // Check for reduced motion preference
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
 
   // Fade in on mount
   useEffect(() => {

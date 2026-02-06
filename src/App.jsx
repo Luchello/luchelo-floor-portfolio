@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from 'react'
 import Hero from './components/Hero'
 import Navbar from './components/Navbar'
+import ErrorBoundary from './components/ErrorBoundary'
 
 // Lazy load below-fold components
 const About = lazy(() => import('./components/About'))
@@ -65,42 +66,44 @@ function App() {
       <Navbar />
       
       <main id="main-content" role="main">
-        <Hero />
-        {/* Hero has built-in wave to cream-50 */}
-        
-        <Suspense fallback={<SectionFallback />}>
-          <About />
-        </Suspense>
-        
-        <Suspense fallback={<SectionFallback />}>
-          <Stats />
-        </Suspense>
-        
-        {/* Wave: dark Stats to light Services */}
-        <WaveDivider toColor="#FEFCF9" />
-        
-        <Suspense fallback={<SectionFallback />}>
-          <Services />
-        </Suspense>
-        
-        <Suspense fallback={<SectionFallback />}>
-          <Portfolio />
-        </Suspense>
-        
-        {/* Wave: white Portfolio to cream Equipment */}
-        <WaveDivider toColor="rgba(253, 248, 240, 0.5)" />
-        
-        <Suspense fallback={<SectionFallback />}>
-          <Equipment />
-        </Suspense>
-        
-        <Suspense fallback={<SectionFallback />}>
-          <Process />
-        </Suspense>
-        
-        <Suspense fallback={<SectionFallback />}>
-          <Contact />
-        </Suspense>
+        <ErrorBoundary>
+          <Hero />
+          {/* Hero has built-in wave to cream-50 */}
+          
+          <Suspense fallback={<SectionFallback />}>
+            <About />
+          </Suspense>
+          
+          <Suspense fallback={<SectionFallback />}>
+            <Stats />
+          </Suspense>
+          
+          {/* Wave: dark Stats to light Services */}
+          <WaveDivider toColor="#FEFCF9" />
+          
+          <Suspense fallback={<SectionFallback />}>
+            <Services />
+          </Suspense>
+          
+          <Suspense fallback={<SectionFallback />}>
+            <Portfolio />
+          </Suspense>
+          
+          {/* Wave: white Portfolio to cream Equipment */}
+          <WaveDivider toColor="rgba(253, 248, 240, 0.5)" />
+          
+          <Suspense fallback={<SectionFallback />}>
+            <Equipment />
+          </Suspense>
+          
+          <Suspense fallback={<SectionFallback />}>
+            <Process />
+          </Suspense>
+          
+          <Suspense fallback={<SectionFallback />}>
+            <Contact />
+          </Suspense>
+        </ErrorBoundary>
       </main>
       
       <Suspense fallback={null}>

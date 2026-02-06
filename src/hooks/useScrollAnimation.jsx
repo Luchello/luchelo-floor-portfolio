@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import useReducedMotion from './useReducedMotion'
 
 export function useScrollAnimation(options = {}) {
   const { threshold = 0.1, rootMargin = '0px 0px -60px 0px' } = options
@@ -24,17 +25,7 @@ export function useScrollAnimation(options = {}) {
 
 export function AnimateIn({ children, className = '', delay = 0, direction = 'up' }) {
   const [ref, isVisible] = useScrollAnimation()
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+  const prefersReducedMotion = useReducedMotion()
   
   const directions = {
     up: 'translate-y-8',

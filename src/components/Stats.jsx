@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { AnimateIn } from '../hooks/useScrollAnimation'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 const stats = [
   { value: 10, suffix: '+', label: '년 경력', prefix: '' },
@@ -11,17 +12,8 @@ const stats = [
 function Counter({ value, suffix, prefix, label }) {
   const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const ref = useRef(null)
-
-  // Check for reduced motion
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
+  const prefersReducedMotion = useReducedMotion()
 
   // IntersectionObserver to trigger animation
   useEffect(() => {

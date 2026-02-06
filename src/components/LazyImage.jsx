@@ -1,25 +1,15 @@
 import { useState, useRef, useEffect } from 'react'
+import useReducedMotion from '../hooks/useReducedMotion'
 
 export default function LazyImage({ src, alt, className = '', onClick, thumbnail = false, eager = false, ...props }) {
   const [loaded, setLoaded] = useState(false)
   const [inView, setInView] = useState(eager) // eager images are immediately "in view"
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const ref = useRef()
+  const prefersReducedMotion = useReducedMotion()
 
   // Generate WebP paths
   const webpSrc = src.replace('.jpg', '.webp')
   const thumbnailWebp = src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp')
-
-  useEffect(() => {
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-    
-    const handleChange = (e) => setPrefersReducedMotion(e.matches)
-    mediaQuery.addEventListener('change', handleChange)
-    
-    return () => mediaQuery.removeEventListener('change', handleChange)
-  }, [])
 
   useEffect(() => {
     if (eager) return // Skip observer for eager images
