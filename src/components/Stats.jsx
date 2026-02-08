@@ -61,8 +61,8 @@ function Counter({ value, suffix, prefix, label }) {
   }, [hasAnimated, value, prefersReducedMotion])
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2">
+    <div ref={ref} className="text-center px-4">
+      <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-2">
         {prefix && <span>{prefix}</span>}
         {value > 0 && <span>{count}</span>}
         {suffix && <span className="text-accent">{suffix}</span>}
@@ -84,7 +84,7 @@ export default function Stats() {
       <h2 id="stats-heading" className="sr-only">대성몰탈 실적</h2>
       <div className="relative max-w-5xl mx-auto">
         <AnimateIn>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:divide-x md:divide-dark-700">
             {stats.map((stat, i) => (
               <AnimateIn key={stat.label} delay={i * 100}>
                 <Counter

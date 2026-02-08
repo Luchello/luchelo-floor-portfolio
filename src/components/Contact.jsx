@@ -92,15 +92,15 @@ export default function Contact() {
   const transitionDuration = prefersReducedMotion ? 'duration-0' : 'duration-200'
 
   return (
-    <section id="contact" className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-50">
+    <section id="contact" className="py-24 sm:py-32 px-4 sm:px-6 bg-dark-900">
       <div className="max-w-5xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-10 sm:mb-12">
             <span className="text-accent font-medium text-xs sm:text-sm tracking-widest uppercase">Contact</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-dark-900 section-header tracking-wide">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-3 text-white section-header tracking-wide">
               견적 문의
             </h2>
-            <p className="text-dark-500 mt-3 text-sm sm:text-base leading-loose">
+            <p className="text-cream-400 mt-3 text-sm sm:text-base leading-loose">
               편하신 방법으로 연락 주세요
             </p>
           </div>
@@ -112,7 +112,7 @@ export default function Contact() {
             <AnimateIn delay={100}>
               <a 
                 href="tel:010-5535-7129" 
-                className="block bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-cream-200/80 shadow-sm hover:shadow-md hover:border-accent/30 hover:-translate-y-0.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
+                className="block bg-dark-800 rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-dark-700 shadow-sm hover:shadow-md hover:border-accent/30 hover:-translate-y-0.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
                 aria-label="전화 문의: 010-5535-7129, 평일 08:00 ~ 18:00"
               >
                 <div className="flex items-center gap-3 mb-3">
@@ -121,15 +121,15 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-dark-800">전화 문의</h3>
+                  <h3 className="font-bold text-cream-300">전화 문의</h3>
                 </div>
                 <p className="text-xl sm:text-2xl font-bold text-accent">010-5535-7129</p>
-                <p className="text-sm text-dark-400 mt-1">평일 08:00 ~ 18:00</p>
+                <p className="text-sm text-cream-400 mt-1">평일 08:00 ~ 18:00</p>
               </a>
             </AnimateIn>
 
             <AnimateIn delay={200}>
-              <div className="bg-white rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-cream-200/80 shadow-sm">
+              <div className="bg-dark-800 rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-dark-700 shadow-sm">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center" aria-hidden="true">
                     <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -137,16 +137,16 @@ export default function Contact() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-dark-800">시공 지역</h3>
+                  <h3 className="font-bold text-cream-300">시공 지역</h3>
                 </div>
-                <p className="text-dark-600 font-medium">충청권 · 경기도권</p>
-                <p className="text-sm text-dark-400 mt-1">그 외 지역도 상담 가능합니다</p>
+                <p className="text-white font-medium">충청권 · 경기도권</p>
+                <p className="text-sm text-cream-400 mt-1">그 외 지역도 상담 가능합니다</p>
               </div>
             </AnimateIn>
 
             <AnimateIn delay={300}>
-              <div className="bg-accent/5 rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-accent/10">
-                <p className="text-dark-700 font-medium text-sm leading-loose">
+              <div className="bg-accent/10 rounded-xl sm:rounded-2xl p-5 sm:p-6 border border-accent/20">
+                <p className="text-cream-300 font-medium text-sm leading-loose">
                   <span aria-hidden="true">💡</span> 전화 한 통이면 현장 방문 일정을 잡아드립니다. 
                   바닥 사진을 미리 보내주시면 더 정확한 상담이 가능합니다.
                 </p>
@@ -158,9 +158,9 @@ export default function Contact() {
           <AnimateIn delay={150} className="md:col-span-3">
             <form 
               onSubmit={handleSubmit} 
-              className="bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm space-y-4 relative"
+              className="bg-dark-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-dark-700 shadow-sm space-y-4 relative"
             >
-              <h3 className="font-bold text-dark-800 text-lg mb-4">온라인 문의</h3>
+              <h3 className="font-bold text-white text-lg mb-4">온라인 문의</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="contact-name" className="sr-only">이름</label>
@@ -170,7 +170,7 @@ export default function Contact() {
                     name="name"
                     placeholder="이름"
                     required
-                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-800 placeholder:text-dark-400 transition-all text-base"
+                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white placeholder:text-dark-400 transition-all text-base"
                   />
                 </div>
                 <div>
@@ -181,7 +181,7 @@ export default function Contact() {
                     name="phone"
                     placeholder="연락처"
                     required
-                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-800 placeholder:text-dark-400 transition-all text-base"
+                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white placeholder:text-dark-400 transition-all text-base"
                   />
                 </div>
               </div>
@@ -191,7 +191,7 @@ export default function Contact() {
                   id="contact-service"
                   name="service"
                   required
-                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-dark-600 transition-all text-base"
+                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white transition-all text-base"
                 >
                   <option value="">시공 종류 선택</option>
                   <option value="방통">방통 시공</option>
@@ -207,9 +207,9 @@ export default function Contact() {
                   name="message"
                   rows={4}
                   placeholder="현장 주소, 면적, 요청사항 등을 적어주세요"
-                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[120px] rounded-xl bg-cream-50 border border-cream-200 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-dark-800 placeholder:text-dark-400 transition-all text-base"
+                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[120px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-white placeholder:text-dark-400 transition-all text-base"
                 />
-                <p className="text-xs text-dark-400 mt-2 px-1">
+                <p className="text-xs text-cream-400 mt-2 px-1">
                   현장 주소, 면적, 요청사항 등
                 </p>
               </div>
