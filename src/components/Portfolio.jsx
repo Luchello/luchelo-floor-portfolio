@@ -164,7 +164,7 @@ export default function Portfolio() {
                     <LazyImage
                       src={project.photo}
                       alt={`${project.title} - ${project.category} 작업 현장`}
-                      className="aspect-[16/9] sm:aspect-[21/9] md:aspect-[21/8] img-zoom"
+                      className={`aspect-[16/9] ${i === 0 ? 'sm:aspect-[21/10]' : 'sm:aspect-[21/9]'} md:aspect-[21/8] img-zoom`}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-dark-950/20 to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
@@ -191,7 +191,7 @@ export default function Portfolio() {
             {rest.map((project, i) => (
               <AnimateIn key={project.id} delay={i * 80}>
                 <article 
-                  className="group bg-cream-50 border border-cream-200/80 rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all h-full cursor-pointer"
+                  className="group bg-cream-50 border border-cream-200/80 rounded-xl sm:rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-accent/10 hover:-translate-y-2 hover:border-accent/30 transition-all h-full cursor-pointer"
                   onClick={() => openLightbox(project.id)}
                   role="button"
                   tabIndex={0}

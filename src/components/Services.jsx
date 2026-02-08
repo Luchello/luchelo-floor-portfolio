@@ -47,7 +47,9 @@ export default function Services() {
           {services.map((svc, i) => (
             <AnimateIn key={svc.title} delay={i * 100}>
               <article className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-accent/20 transition-all h-full service-card-border">
-                <span className="text-3xl sm:text-4xl block mb-4 sm:mb-5" aria-hidden="true">{svc.icon}</span>
+                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-4 sm:mb-5">
+                  <span className="text-2xl sm:text-3xl" aria-hidden="true">{svc.icon}</span>
+                </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-dark-900 group-hover:text-accent transition-colors">
                   {svc.title}
                 </h3>

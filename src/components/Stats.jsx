@@ -77,9 +77,13 @@ function Counter({ value, suffix, prefix, label }) {
 
 export default function Stats() {
   return (
-    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-dark-900" aria-labelledby="stats-heading">
+    <section className="relative overflow-hidden py-16 sm:py-20 px-4 sm:px-6 bg-dark-900" aria-labelledby="stats-heading">
+      <div className="absolute inset-0">
+        <img src="./photos/factory-rebar.webp" className="w-full h-full object-cover" alt="" />
+        <div className="absolute inset-0 bg-dark-900/85" />
+      </div>
       <h2 id="stats-heading" className="sr-only">대성몰탈 실적</h2>
-      <div className="max-w-5xl mx-auto">
+      <div className="relative max-w-5xl mx-auto">
         <AnimateIn>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((stat, i) => (

@@ -21,24 +21,31 @@ export default function About() {
         </AnimateIn>
 
         <AnimateIn delay={100}>
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-sm border border-cream-200/80 mb-10 sm:mb-12">
-            <div className="space-y-4 text-dark-600 leading-loose text-base sm:text-lg text-center max-w-3xl mx-auto">
-              <p>
-                안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
-              </p>
-              <p>
-                10년 넘게 현장을 뛰며 방통, 재물 작업을 해왔습니다. 
-                충청권과 경기도권을 중심으로 움직이고 있고요, 
-                큰 공장부터 작은 주택 보수까지 다양하게 경험했습니다.
-              </p>
-              <p>
-                바닥은 현장마다 상태가 다릅니다. 
-                그래서 저희는 직접 가서 보고, 필요한 공법과 재료를 말씀드려요.
-                괜히 과하게 잡거나 빼먹는 일 없이, 딱 필요한 만큼만 안내드립니다.
-              </p>
-              <p className="text-accent font-semibold pt-2">
-                현장 방문 견적은 무료입니다. 편하게 연락 주세요.
-              </p>
+          <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-cream-200/80 mb-10 sm:mb-12">
+            <div className="md:flex">
+              <div className="md:w-2/5">
+                <img src="./photos/hanok-trowel.webp" alt="시공 현장 사진" className="w-full h-full object-cover min-h-[250px]" />
+              </div>
+              <div className="p-6 sm:p-8 md:p-12 md:w-3/5">
+                <div className="space-y-4 text-dark-600 leading-loose text-base sm:text-lg text-center max-w-3xl mx-auto">
+                  <p>
+                    안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
+                  </p>
+                  <p>
+                    10년 넘게 현장을 뛰며 방통, 재물 작업을 해왔습니다.
+                    충청권과 경기도권을 중심으로 움직이고 있고요,
+                    큰 공장부터 작은 주택 보수까지 다양하게 경험했습니다.
+                  </p>
+                  <p>
+                    바닥은 현장마다 상태가 다릅니다.
+                    그래서 저희는 직접 가서 보고, 필요한 공법과 재료를 말씀드려요.
+                    괜히 과하게 잡거나 빼먹는 일 없이, 딱 필요한 만큼만 안내드립니다.
+                  </p>
+                  <p className="text-accent font-semibold pt-2">
+                    현장 방문 견적은 무료입니다. 편하게 연락 주세요.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </AnimateIn>
