@@ -46,7 +46,7 @@ export default function Services() {
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
           {services.map((svc, i) => (
             <AnimateIn key={svc.title} delay={i * 100}>
-              <article className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-accent/20 transition-all h-full service-card-border">
+              <article className="group bg-white rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-cream-200/80 shadow-sm hover:shadow-lg hover:-translate-y-1 border-t-4 border-transparent hover:border-accent transition-all duration-300 h-full service-card-border">
                 <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-4 sm:mb-5">
                   <span className="text-2xl sm:text-3xl" aria-hidden="true">{svc.icon}</span>
                 </div>
@@ -54,13 +54,17 @@ export default function Services() {
                   {svc.title}
                 </h3>
                 <p className="text-dark-500 leading-loose mb-4 sm:mb-5 text-sm sm:text-base">{svc.desc}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {svc.tags.map(tag => (
                     <span key={tag} className="bg-cream-100 text-dark-600 text-xs font-medium px-3 py-1.5 rounded-full">
                       {tag}
                     </span>
                   ))}
                 </div>
+                <a href="tel:010-5535-7129" className="inline-flex items-center gap-2 text-accent font-semibold text-sm hover:text-accent-dark transition-colors group/cta">
+                  견적 문의하기
+                  <svg className="w-4 h-4 group-hover/cta:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
               </article>
             </AnimateIn>
           ))}

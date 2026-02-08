@@ -7,9 +7,10 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
   const ref = useRef()
   const prefersReducedMotion = useReducedMotion()
 
-  // Generate WebP paths
+  // Force WebP - always convert .jpg to .webp
   const webpSrc = src.replace('.jpg', '.webp')
   const thumbnailWebp = src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp')
+  const fallbackSrc = webpSrc // Use WebP as primary, no JPG fallback needed
 
   useEffect(() => {
     if (eager) return // Skip observer for eager images
@@ -60,23 +61,39 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
       {inView && (
         <picture>
           {thumbnail ? (
-            // Thumbnail mode: responsive srcSet with thumb for small, full for large
-            <source 
-              srcSet={`${thumbnailWebp} 400w, ${webpSrc} 800w`} 
-              type="image/webp" 
-              sizes="(max-width: 640px) 50vw, 33vw"
-            />
+            <>
+              {/* Thumbnail mode: responsive srcSet with thumb for small, full for large */}
+              <source
+                srcSet={`${thumbnailWebp} 400w, ${webpSrc} 800w`}
+                type="image/webp"
+                sizes="(max-width: 640px) 50vw, 33vw"
+              />
+              <img
+                src={webpSrc}
+                alt={alt}
+                width="800"
+                height="600"
+                loading={eager ? 'eager' : 'lazy'}
+                onLoad={() => setLoaded(true)}
+                className={`w-full h-full object-cover ${transitionClass} ${loaded ? 'opacity-100' : 'opacity-0'}`}
+              />
+            </>
           ) : (
-            // Full-size mode: just use full WebP
-            <source srcSet={webpSrc} type="image/webp" />
+            <>
+              {/* Full-size mode: just use full WebP */}
+              <source srcSet={webpSrc} type="image/webp" />
+              <img
+                src={webpSrc}
+                alt={alt}
+                width="800"
+                height="600"
+                loading={eager ? 'eager' : 'lazy'}
+                onLoad={() => setLoaded(true)}
+                className={`w-full h-full object-cover ${transitionClass} ${loaded ? 'opacity-100' : 'opacity-0'}`}
+                decoding="async"
+              />
+            </>
           )}
-          <img
-            src={src}
-            alt={alt}
-            loading={eager ? 'eager' : 'lazy'}
-            onLoad={() => setLoaded(true)}
-            className={`w-full h-full object-cover ${transitionClass} ${loaded ? 'opacity-100' : 'opacity-0'}`}
-          />
         </picture>
       )}
     </div>

@@ -74,12 +74,16 @@ export default function Footer() {
           <div className="text-center md:text-right">
             <h3 className="font-bold text-white text-sm mb-4 uppercase tracking-wider">연락처</h3>
             <div className="space-y-3">
-              <a 
-                href="tel:010-5535-7129" 
-                className="text-accent font-bold text-lg hover:text-accent-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-2 py-1 inline-block"
+              <a
+                href="tel:010-5535-7129"
+                className="text-accent font-bold text-lg hover:text-accent-light transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded px-2 py-1 inline-flex items-center gap-2"
                 aria-label="전화 걸기: 010-5535-7129"
               >
-                <span className="phone-heartbeat" aria-hidden="true">📞</span> 010-5535-7129
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"/>
+                  <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a.997.997 0 0 0-.086-1.391l-4.064-3.696z"/>
+                </svg>
+                010-5535-7129
               </a>
               <div className="text-dark-500 text-sm space-y-1">
                 <p>
@@ -88,6 +92,19 @@ export default function Footer() {
                 <p>
                   <span className="text-dark-400">시공지역:</span> 충청권 · 경기도권
                 </p>
+              </div>
+              {/* SNS Icons */}
+              <div className="flex items-center justify-center md:justify-end gap-3 pt-2">
+                <a
+                  href="tel:010-5535-7129"
+                  className="w-9 h-9 rounded-full bg-dark-800 hover:bg-accent flex items-center justify-center transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dark-950"
+                  aria-label="전화로 연락하기"
+                >
+                  <svg className="w-4 h-4 text-dark-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20 10.999h2C22 5.869 18.127 2 12.99 2v2C17.052 4 20 6.943 20 10.999z"/>
+                    <path d="M13 8c2.103 0 3 .897 3 3h2c0-3.225-1.775-5-5-5v2zm3.422 5.443a1.001 1.001 0 0 0-1.391.043l-2.393 2.461c-.576-.11-1.734-.471-2.926-1.66-1.192-1.193-1.553-2.354-1.66-2.926l2.459-2.394a1 1 0 0 0 .043-1.391L6.859 3.513a1 1 0 0 0-1.391-.087l-2.17 1.861a1 1 0 0 0-.29.649c-.015.25-.301 6.172 4.291 10.766C11.305 20.707 16.323 21 17.705 21c.202 0 .326-.006.359-.008a.992.992 0 0 0 .648-.291l1.86-2.171a.997.997 0 0 0-.086-1.391l-4.064-3.696z"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
