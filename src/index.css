@@ -37,6 +37,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 /* Respect reduced motion preferences */
@@ -76,14 +77,20 @@ body {
 }
 
 /* Focus visible styles for keyboard navigation */
-*:focus-visible {
-  outline: 2px solid var(--color-accent);
+:focus-visible {
+  outline: 2px solid rgba(196,164,105,0.8);
   outline-offset: 2px;
 }
 
 /* Remove default focus outline since we use focus-visible */
 *:focus:not(:focus-visible) {
   outline: none;
+}
+
+/* R10: Content-visibility for off-screen sections */
+section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 /* Skip to content link - hidden until focused */
@@ -531,5 +538,26 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .cta-ring {
     animation: none;
+  }
+}
+
+/* ========================================
+   Section background gradients
+   ======================================== */
+#about { background: linear-gradient(180deg, rgba(254,252,249,0.5) 0%, rgba(254,252,249,0.8) 80%, rgba(26,22,18,0.05) 100%); }
+#portfolio { background: linear-gradient(180deg, #ffffff 0%, #ffffff 90%, rgba(249,245,239,0.5) 100%); }
+
+/* ========================================
+   R12: Print styles
+   ======================================== */
+@media print {
+  .noise-overlay::before,
+  nav,
+  .fixed,
+  footer {
+    display: none !important;
+  }
+  section {
+    page-break-inside: avoid;
   }
 }

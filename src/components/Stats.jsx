@@ -11,6 +11,7 @@ const stats = [
 function Counter({ value, suffix, prefix, label }) {
   const [count, setCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
+  const [finished, setFinished] = useState(false)
   const ref = useRef(null)
   const prefersReducedMotion = useReducedMotion()
 
@@ -35,6 +36,7 @@ function Counter({ value, suffix, prefix, label }) {
 
     if (prefersReducedMotion) {
       setCount(value)
+      setFinished(true)
       return
     }
 
@@ -48,6 +50,7 @@ function Counter({ value, suffix, prefix, label }) {
       currentStep++
       if (currentStep >= steps) {
         setCount(value)
+        setFinished(true)
         clearInterval(timer)
       } else {
         // Easing: start fast, slow down
@@ -62,7 +65,7 @@ function Counter({ value, suffix, prefix, label }) {
 
   return (
     <div ref={ref} className="text-center px-4">
-      <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-2">
+      <div className={`text-3xl sm:text-4xl md:text-5xl font-bold text-accent mb-2 transition-transform duration-300 ${finished ? "scale-100" : "scale-95 opacity-90"}`}>
         {prefix && <span>{prefix}</span>}
         {value > 0 && <span>{count}</span>}
         {suffix && <span className="text-accent">{suffix}</span>}

@@ -89,7 +89,7 @@ export default function Hero() {
           <span className="text-cream-300 text-xs sm:text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight mb-4 sm:mb-6 tracking-tight hero-text-shadow">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-white via-accent/80 to-white bg-clip-text text-transparent leading-tight mb-4 sm:mb-6 tracking-tight hero-text-shadow">
           대성몰탈
         </h1>
 
@@ -124,12 +124,13 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator - hides after scrolling starts */}
-      <div 
-        className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 transition-opacity duration-500 motion-reduce:duration-0 ${
+      <div
+        className={`absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center transition-opacity duration-500 motion-reduce:duration-0 ${
           loaded && !scrollStarted ? 'opacity-100' : 'opacity-0'
         }`}
         aria-hidden="true"
       >
+        <p className="text-cream-400/40 text-xs mb-2 tracking-widest uppercase">scroll</p>
         <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-white/40 rounded-full mt-2 animate-bounce motion-reduce:animate-none" />
         </div>
