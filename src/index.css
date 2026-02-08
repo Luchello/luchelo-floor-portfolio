@@ -265,39 +265,7 @@ img {
   }
 }
 
-/* ========================================
-   ROUND 13: Contact form states
-   ======================================== */
-.form-sending {
-  position: relative;
-  pointer-events: none;
-}
-
-.form-sending::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(254, 252, 249, 0.8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: inherit;
-}
-
-.form-success {
-  animation: success-pulse 0.5s ease;
-}
-
-@keyframes success-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .form-success {
-    animation: none;
-  }
-}
+/* (cleanup: form-sending/form-success 제거 — 미사용) */
 
 /* ========================================
    ROUND 13: Image hover zoom
@@ -422,80 +390,11 @@ img {
   }
 }
 
-/* ========================================
-   ROUND 20: Portfolio badge glow
-   ======================================== */
-@keyframes badge-glow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(158, 123, 79, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 8px 2px rgba(158, 123, 79, 0.3);
-  }
-}
+/* (cleanup: badge-glow 제거 — 미사용) */
 
-.badge-glow {
-  animation: badge-glow 2.5s ease-in-out infinite;
-}
+/* (cleanup: phone-heartbeat 제거 — 미사용) */
 
-@media (prefers-reduced-motion: reduce) {
-  .badge-glow {
-    animation: none;
-  }
-}
-
-/* ========================================
-   ROUND 20: Footer phone heartbeat
-   ======================================== */
-@keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  14% {
-    transform: scale(1.15);
-  }
-  28% {
-    transform: scale(1);
-  }
-  42% {
-    transform: scale(1.15);
-  }
-  56% {
-    transform: scale(1);
-  }
-}
-
-.phone-heartbeat {
-  display: inline-block;
-  animation: heartbeat 2s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .phone-heartbeat {
-    animation: none;
-  }
-}
-
-/* ========================================
-   ROUND 20: Navbar gradient bottom
-   ======================================== */
-.navbar-gradient-bottom::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--color-cream-300),
-    var(--color-cream-400),
-    var(--color-cream-300),
-    transparent
-  );
-  opacity: 0.6;
-}
+/* (cleanup: navbar-gradient-bottom 제거 — 미사용) */
 
 /* ========================================
    Equipment section dot pattern
@@ -566,10 +465,14 @@ section:not(:first-child) {
   a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
 }
 
-/* R10: Form validation styles */
-input:invalid:not(:placeholder-shown),
-select:invalid:not(:placeholder-shown),
-textarea:invalid:not(:placeholder-shown) {
+/* R10: Form validation styles — only after user interaction (focus+blur) */
+input:invalid:not(:placeholder-shown):not(:focus),
+textarea:invalid:not(:placeholder-shown):not(:focus) {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+}
+/* select는 JS로 touched 클래스 추가 후에만 표시 */
+select.touched:invalid:not(:focus) {
   border-color: rgba(239, 68, 68, 0.6);
   box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
 }

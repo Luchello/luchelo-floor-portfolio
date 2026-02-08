@@ -53,6 +53,7 @@ export default function Hero() {
 
   return (
     <section 
+      id="hero"
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden noise-overlay"
       aria-label="대성몰탈 메인 배너"

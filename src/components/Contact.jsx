@@ -191,6 +191,7 @@ export default function Contact() {
                   id="contact-service"
                   name="service"
                   required
+                  onBlur={(e) => e.target.classList.add('touched')}
                   className="w-full px-4 py-3 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white transition-all text-base"
                 >
                   <option value="">시공 종류 선택</option>
