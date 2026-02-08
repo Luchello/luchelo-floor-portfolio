@@ -547,6 +547,12 @@ img {
 #about { background: linear-gradient(180deg, rgba(254,252,249,0.5) 0%, rgba(254,252,249,0.8) 80%, rgba(26,22,18,0.05) 100%); }
 #portfolio { background: linear-gradient(180deg, #ffffff 0%, #ffffff 90%, rgba(249,245,239,0.5) 100%); }
 
+/* R10: Off-screen rendering optimization */
+section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* ========================================
    R12: Print styles
    ======================================== */
@@ -554,10 +560,16 @@ img {
   .noise-overlay::before,
   nav,
   .fixed,
-  footer {
-    display: none !important;
-  }
-  section {
-    page-break-inside: avoid;
-  }
+  footer { display: none !important; }
+  section { page-break-inside: avoid; }
+  body { font-size: 12pt; color: #000; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #666; }
+}
+
+/* R10: Form validation styles */
+input:invalid:not(:placeholder-shown),
+select:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
 }

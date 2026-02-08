@@ -109,7 +109,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-dark-800/50 text-center text-sm text-dark-600">
-          <p>© {currentYear} 대성몰탈. 충청권 · 경기도권 바닥미장 전문 시공업체.</p>
+          <p>© {currentYear} 대성몰탈 <span className="text-accent">·</span> 충청권 · 경기도권</p>
         </div>
       </div>
     </footer>
