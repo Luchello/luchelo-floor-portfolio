@@ -27,7 +27,7 @@ export default function About() {
                 <img src="./photos/hanok-trowel.webp" alt="시공 현장 사진" className="w-full h-full object-cover min-h-[250px]" />
               </div>
               <div className="p-6 sm:p-8 md:p-12 md:w-3/5">
-                <div className="space-y-4 text-dark-600 leading-loose text-base sm:text-lg text-center max-w-3xl mx-auto">
+                <div className="space-y-5 text-dark-600 leading-[1.8] text-base sm:text-lg text-left max-w-2xl text-dark-700">
                   <p>
                     안녕하세요, <strong className="text-dark-800">대성몰탈</strong>입니다.
                   </p>

@@ -113,7 +113,7 @@ export default function Hero() {
           <a
             href="#portfolio"
             onClick={handlePortfolioClick}
-            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border-0 sm:border sm:border-cream-300/20 hover:border-white/40 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-medium transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
+            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border border-cream-300/30 hover:border-white/50 px-8 py-4 rounded-xl font-medium text-lg transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
           >
             시공 사례 보기
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
