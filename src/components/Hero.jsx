@@ -97,7 +97,6 @@ export default function Hero() {
           방통 · 재물 · 바닥미장
         </p>
         <p className="text-sm sm:text-base text-cream-400/50 mb-8 sm:mb-12">
-          충청권 · 경기도권 · 현장 방문 견적 무료
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">

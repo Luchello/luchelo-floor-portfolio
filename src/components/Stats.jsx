@@ -6,7 +6,6 @@ const stats = [
   { value: 10, suffix: '+', label: '년 경력', prefix: '' },
   { value: 500, suffix: '+', label: '시공 현장', prefix: '' },
   { value: 100, suffix: '%', label: '책임 시공', prefix: '' },
-  { value: 0, suffix: '', label: '현장 견적', prefix: '무료' },
 ]
 
 function Counter({ value, suffix, prefix, label }) {
