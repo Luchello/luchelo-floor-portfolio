@@ -8,11 +8,15 @@ export default function Hero() {
   const sectionRef = useRef(null)
   const prefersReducedMotion = useReducedMotion()
 
-  // Preload hero image (WebP only)
+  // Preload hero image (WebP only) — 빠르게 로드 + fallback
   useEffect(() => {
     const img = new Image()
     img.onload = () => setLoaded(true)
+    img.onerror = () => setLoaded(true) // 에러여도 콘텐츠는 보여줌
     img.src = './photos/mountain-trowel.webp'
+    // 3초 안에 안 로드되면 강제 표시 (headless 환경 대응)
+    const fallback = setTimeout(() => setLoaded(true), 3000)
+    return () => clearTimeout(fallback)
   }, [])
 
   // Parallax effect on scroll + hide scroll indicator
@@ -74,11 +78,11 @@ export default function Hero() {
             decoding="async"
           />
         </div>
-        <div className="absolute inset-0 bg-dark-800 -z-10" />
+        <div className="absolute inset-0 bg-dark-800 z-0" />
       </div>
 
       {/* Content */}
-      <div className={`relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto transition-all duration-1000 delay-300 motion-reduce:duration-0 motion-reduce:delay-0 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+      <div className="relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 sm:px-5 py-2 mb-6 sm:mb-8">
           <div className="w-2 h-2 bg-accent rounded-full animate-pulse motion-reduce:animate-none" aria-hidden="true" />
           <span className="text-cream-300 text-xs sm:text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
