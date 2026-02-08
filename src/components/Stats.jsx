@@ -5,6 +5,7 @@ import useReducedMotion from '../hooks/useReducedMotion'
 const stats = [
   { value: 10, suffix: '+', label: '년 경력', prefix: '' },
   { value: 500, suffix: '+', label: '시공 현장', prefix: '' },
+  { value: 24, suffix: 'h', label: '빠른 응답', prefix: '' },
   { value: 100, suffix: '%', label: '책임 시공', prefix: '' },
 ]
 

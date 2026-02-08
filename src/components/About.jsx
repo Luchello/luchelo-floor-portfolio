@@ -42,6 +42,7 @@ export default function About() {
                     괜히 과하게 잡거나 빼먹는 일 없이, 딱 필요한 만큼만 안내드립니다.
                   </p>
                   <p className="text-accent font-semibold pt-2">
+                    현장에서 직접 뵙겠습니다.
                   </p>
                 </div>
               </div>

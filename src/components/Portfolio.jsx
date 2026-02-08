@@ -71,7 +71,7 @@ const projects = [
   {
     id: 8,
     title: '기초 슬래브 작업',
-    category: '재물',
+    category: '방통',
     photo: './photos/foundation-slab.jpg',
     story: '거푸집 안에 시공된 기초 슬래브. 건물의 첫 번째 바닥이 완성되는 순간입니다.',
     location: '세종시',
@@ -80,7 +80,7 @@ const projects = [
   {
     id: 9,
     title: '옥상 바닥 마감',
-    category: '재물',
+    category: '방통',
     photo: './photos/rooftop-finish.jpg',
     location: '충남 논산',
     area: '180㎡',
@@ -200,7 +200,7 @@ export default function Portfolio() {
                         {project.title}
                       </h3>
                       {project.story && (
-                        <p className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
                           {project.story}
                         </p>
                       )}
