@@ -158,7 +158,7 @@ export default function Contact() {
           <AnimateIn delay={150} className="md:col-span-3">
             <form 
               onSubmit={handleSubmit} 
-              className="bg-dark-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-dark-700 shadow-sm space-y-4 relative"
+              className="bg-dark-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-dark-700 shadow-sm space-y-3 sm:space-y-4 relative"
             >
               <h3 className="font-bold text-white text-lg mb-4">온라인 문의</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -170,7 +170,7 @@ export default function Contact() {
                     name="name"
                     placeholder="이름"
                     required
-                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white placeholder:text-dark-400 transition-all text-base"
+                    className="w-full px-4 py-3 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white placeholder:text-dark-400 transition-all text-base"
                   />
                 </div>
                 <div>
@@ -181,7 +181,7 @@ export default function Contact() {
                     name="phone"
                     placeholder="연락처"
                     required
-                    className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white placeholder:text-dark-400 transition-all text-base"
+                    className="w-full px-4 py-3 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white placeholder:text-dark-400 transition-all text-base"
                   />
                 </div>
               </div>
@@ -191,7 +191,7 @@ export default function Contact() {
                   id="contact-service"
                   name="service"
                   required
-                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white transition-all text-base"
+                  className="w-full px-4 py-3 sm:py-3.5 min-h-[44px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none text-white transition-all text-base"
                 >
                   <option value="">시공 종류 선택</option>
                   <option value="방통">방통 시공</option>
@@ -207,7 +207,7 @@ export default function Contact() {
                   name="message"
                   rows={4}
                   placeholder="현장 주소, 면적, 요청사항 등을 적어주세요"
-                  className="w-full px-4 py-3.5 sm:py-3.5 min-h-[120px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-white placeholder:text-dark-400 transition-all text-base"
+                  className="w-full px-4 py-3 sm:py-3.5 min-h-[120px] rounded-xl bg-dark-700/50 border border-dark-600 focus:border-accent focus:ring-2 focus:ring-accent/20 focus-visible:outline-none resize-none text-white placeholder:text-dark-400 transition-all text-base"
                 />
                 <p className="text-xs text-cream-400 mt-2 px-1">
                   현장 주소, 면적, 요청사항 등
@@ -215,7 +215,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-accent hover:bg-accent-dark text-white py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
+                className="w-full bg-accent hover:bg-accent-dark text-white py-3.5 sm:py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
               >
                 문의하기
               </button>

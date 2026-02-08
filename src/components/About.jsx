@@ -56,7 +56,7 @@ export default function About() {
           {strengths.map((item, i) => (
             <AnimateIn key={item.title} delay={200 + i * 100}>
               <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center border border-cream-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all h-full">
-                <span className="text-2xl sm:text-3xl block mb-2 sm:mb-3" aria-hidden="true">{item.icon}</span>
+                <div className="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center mb-3 mx-auto"><span className="text-xl" aria-hidden="true">{item.icon}</span></div>
                 <h3 className="font-bold text-dark-800 mb-1 text-sm sm:text-base">{item.title}</h3>
                 <p className="text-dark-500 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
               </div>

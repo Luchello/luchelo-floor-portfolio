@@ -76,8 +76,8 @@ export default function Navbar() {
       role="navigation"
       aria-label="메인 네비게이션"
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-cream-50/95 backdrop-blur-md shadow-sm navbar-gradient-bottom' 
+        scrolled
+          ? 'bg-dark-900/95 backdrop-blur-md border-b border-dark-700/50'
           : 'bg-transparent'
       }`}
     >
@@ -94,7 +94,7 @@ export default function Navbar() {
             <span className="text-white font-bold text-sm">대</span>
           </div>
           <span className={`font-bold text-lg tracking-tight transition-colors ${
-            scrolled ? 'text-dark-900' : 'text-white'
+            scrolled ? 'text-white' : 'text-white'
           }`}>
             대성몰탈
           </span>
@@ -108,10 +108,10 @@ export default function Navbar() {
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
               className={`text-sm font-medium transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 rounded px-1 py-0.5 nav-link-animated ${
-                scrolled 
+                scrolled
                   ? activeSection === link.id
                     ? 'text-accent'
-                    : 'text-dark-500 hover:text-accent' 
+                    : 'text-cream-300 hover:text-accent'
                   : activeSection === link.id
                     ? 'text-white'
                     : 'text-white/70 hover:text-white'
@@ -153,16 +153,16 @@ export default function Navbar() {
             aria-controls="mobile-menu"
             aria-label={menuOpen ? '메뉴 닫기' : '메뉴 열기'}
           >
-            <span 
-              className={`w-5 h-0.5 transition-all duration-300 ease-in-out origin-center ${scrolled ? 'bg-dark-900' : 'bg-white'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} 
+            <span
+              className={`w-5 h-0.5 transition-all duration-300 ease-in-out origin-center ${scrolled ? 'bg-white' : 'bg-white'} ${menuOpen ? 'rotate-45 translate-y-2' : ''}`}
               aria-hidden="true"
             />
-            <span 
-              className={`w-5 h-0.5 transition-all duration-200 ease-in-out ${scrolled ? 'bg-dark-900' : 'bg-white'} ${menuOpen ? 'opacity-0 scale-x-0' : ''}`} 
+            <span
+              className={`w-5 h-0.5 transition-all duration-200 ease-in-out ${scrolled ? 'bg-white' : 'bg-white'} ${menuOpen ? 'opacity-0 scale-x-0' : ''}`}
               aria-hidden="true"
             />
-            <span 
-              className={`w-5 h-0.5 transition-all duration-300 ease-in-out origin-center ${scrolled ? 'bg-dark-900' : 'bg-white'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} 
+            <span
+              className={`w-5 h-0.5 transition-all duration-300 ease-in-out origin-center ${scrolled ? 'bg-white' : 'bg-white'} ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`}
               aria-hidden="true"
             />
           </button>

@@ -57,10 +57,10 @@ export default function Process() {
             <AnimateIn key={step.num} delay={i * 120} direction={i % 2 === 0 ? 'left' : 'right'}>
               <li className="flex gap-3 sm:gap-5 items-start group relative">
                 <div 
-                  className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-dark-800 border border-dark-700 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:border-accent/50 transition-colors z-10"
+                  className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-dark-800 border border-dark-700 rounded-lg sm:rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:border-accent transition-colors z-10"
                   aria-hidden="true"
                 >
-                  <span className="text-accent font-bold font-mono text-sm sm:text-base">{step.num}</span>
+                  <span className="text-accent font-bold font-mono text-sm sm:text-base group-hover:text-white">{step.num}</span>
                 </div>
                 <div className="flex-1 bg-dark-800/50 rounded-lg sm:rounded-xl p-4 sm:p-6 border border-dark-700/50 group-hover:border-accent/20 transition-colors">
                   <div className="flex items-center gap-2 sm:gap-3 mb-1 sm:mb-2">

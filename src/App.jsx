@@ -89,8 +89,8 @@ function App() {
             <Portfolio />
           </Suspense>
           
-          {/* Wave: white Portfolio to cream Equipment */}
-          <WaveDivider toColor="rgba(253, 248, 240, 0.5)" />
+          {/* Wave: white Portfolio to cream Equipment (cream-100/50 = #FDF8F0 at 50%) */}
+          <WaveDivider toColor="rgba(253,248,240,0.5)" />
           
           <Suspense fallback={<SectionFallback />}>
             <Equipment />

@@ -187,7 +187,7 @@ export default function Portfolio() {
           )}
 
           {/* Grid - responsive: 1 col mobile, 2 col sm, 3 col lg */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {rest.map((project, i) => (
               <AnimateIn key={project.id} delay={i * 80}>
                 <article 
@@ -222,7 +222,7 @@ export default function Portfolio() {
                       {project.title}
                     </h3>
                     {project.story && (
-                      <p className="text-dark-500 text-xs sm:text-sm leading-relaxed">{project.story}</p>
+                      <p className="text-dark-500 text-xs sm:text-sm leading-relaxed hidden sm:block">{project.story}</p>
                     )}
                   </div>
                 </article>

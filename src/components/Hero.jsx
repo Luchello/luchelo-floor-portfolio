@@ -93,8 +93,8 @@ export default function Hero() {
           대성몰탈
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-light hero-text-shadow">
-          방통 · 재물 · 바닥미장
+        <p className="text-base sm:text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-light hero-text-shadow tracking-widest">
+          방통 <span className="text-accent">·</span> 재물 <span className="text-accent">·</span> 바닥미장
         </p>
         <p className="text-sm sm:text-base text-cream-400/50 mb-8 sm:mb-12">
         </p>
@@ -102,7 +102,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <a
             href="tel:010-5535-7129"
-            className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
+            className="group inline-flex items-center gap-3 bg-accent hover:bg-accent-dark text-white w-full px-8 py-4 text-lg sm:w-auto sm:px-8 sm:py-4 sm:text-lg rounded-xl font-bold transition-all shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 justify-center btn-press"
             aria-label="전화 걸기: 010-5535-7129"
           >
             <svg className="w-5 h-5 group-hover:animate-pulse motion-reduce:group-hover:animate-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -113,7 +113,7 @@ export default function Hero() {
           <a
             href="#portfolio"
             onClick={handlePortfolioClick}
-            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border border-cream-300/20 hover:border-white/40 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-medium transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
+            className="inline-flex items-center gap-2 text-cream-300 hover:text-white border-0 sm:border sm:border-cream-300/20 hover:border-white/40 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl font-medium transition-all hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-dark-900 w-full sm:w-auto justify-center btn-press"
           >
             시공 사례 보기
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

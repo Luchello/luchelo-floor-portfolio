@@ -44,7 +44,7 @@ export default function Equipment() {
   }
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-100/50" aria-labelledby="equipment-heading">
+    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-100/50 equipment-bg" aria-labelledby="equipment-heading">
       <div className="max-w-6xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-10 sm:mb-14">
@@ -65,8 +65,8 @@ export default function Equipment() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
           {equipment.map((item, i) => (
             <AnimateIn key={item.name} delay={i * 100}>
-              <article 
-                className="group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-cream-200/80 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all h-full cursor-pointer"
+              <article
+                className="relative group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-cream-200/80 shadow-sm hover:shadow-md hover:border-accent/30 hover:-translate-y-1 transition-all h-full cursor-pointer"
                 onClick={() => openLightbox(i)}
                 role="button"
                 tabIndex={0}
@@ -78,6 +78,7 @@ export default function Equipment() {
                 }}
                 aria-label={`${item.name} 사진 크게 보기`}
               >
+                <div className="absolute top-3 left-3 z-10 w-7 h-7 bg-accent/90 rounded-full flex items-center justify-center"><span className="text-white text-xs font-bold">{i + 1}</span></div>
                 <div className="img-zoom-container">
                   <LazyImage
                     src={item.photo}

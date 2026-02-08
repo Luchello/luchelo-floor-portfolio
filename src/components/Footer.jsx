@@ -30,7 +30,9 @@ export default function Footer() {
   }
 
   return (
-    <footer role="contentinfo" className="bg-dark-950 text-dark-400 py-16 px-4 sm:px-6">
+    <>
+      <div className="h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
+      <footer role="contentinfo" className="bg-dark-950 text-dark-400 py-16 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         {/* 3-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-10">
@@ -111,5 +113,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   )
 }

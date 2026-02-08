@@ -27,11 +27,11 @@ export default function FloatingCTA() {
         w-14 h-14 rounded-full
         bg-accent hover:bg-accent-dark
         flex items-center justify-center
-        shadow-lg shadow-accent/30
+        shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/40
         transition-all duration-300
         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2
         ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}
-        ${!prefersReducedMotion ? 'floating-cta-pulse' : ''}
+        ${!prefersReducedMotion ? 'floating-cta-pulse cta-ring' : ''}
       `}
     >
       <svg 
