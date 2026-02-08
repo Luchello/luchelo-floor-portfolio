@@ -22,7 +22,7 @@ export default function About() {
 
         <AnimateIn delay={100}>
           <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-cream-200/80 mb-10 sm:mb-12">
-            <div className="md:flex">
+            <div className="md:flex md:items-center">
               <div className="md:w-2/5">
                 <img src="./photos/hanok-trowel.webp" alt="시공 현장 사진" className="w-full h-full object-cover min-h-[250px]" />
               </div>

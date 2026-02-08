@@ -215,7 +215,7 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-accent hover:bg-accent-dark text-white py-3.5 sm:py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg transition-all shadow-md shadow-accent/20 hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
+                className="w-full bg-gradient-to-r from-accent to-accent/80 hover:from-accent-dark hover:to-accent text-white py-3.5 sm:py-4 min-h-[48px] rounded-xl font-bold text-base sm:text-lg transition-all shadow-lg shadow-accent/30 hover:shadow-xl hover:shadow-accent/50 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 btn-press"
               >
                 문의하기
               </button>

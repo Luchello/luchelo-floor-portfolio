@@ -130,12 +130,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Wave divider at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 wave-divider" aria-hidden="true">
-        <svg viewBox="0 0 1200 60" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 60V30C200 60 400 0 600 30C800 60 1000 0 1200 30V60H0Z" fill="#FEFCF9"/>
-        </svg>
-      </div>
+      {/* Gradient fade to next section */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 h-32 bg-gradient-to-b from-transparent to-[#FEFCF9]" aria-hidden="true" />
     </section>
   )
 }
