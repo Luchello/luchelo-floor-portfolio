@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://floor-portfolio.vercel.app/sitemap.xml
