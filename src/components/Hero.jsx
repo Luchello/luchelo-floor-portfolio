@@ -66,7 +66,7 @@ export default function Hero() {
       <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 z-10" />
         <div 
-          className="absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 opacity-100"
+          className="absolute inset-0 z-[1] transition-opacity duration-1000 motion-reduce:duration-0 opacity-100"
           data-loaded={loaded}
           style={!prefersReducedMotion ? { transform: `translateY(${parallaxY}px)`, willChange: 'transform' } : undefined}
         >
