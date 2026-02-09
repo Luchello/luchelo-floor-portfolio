@@ -44,7 +44,7 @@ export default function Equipment() {
   }
 
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-100/50 equipment-bg" aria-labelledby="equipment-heading">
+    <section id="equipment" className="py-24 sm:py-32 px-4 sm:px-6 bg-cream-100/50 equipment-bg" aria-labelledby="equipment-heading">
       <div className="max-w-6xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-10 sm:mb-14">

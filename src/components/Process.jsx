@@ -35,7 +35,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="py-24 sm:py-32 px-4 sm:px-6 bg-dark-900 overflow-hidden" aria-labelledby="process-heading">
+    <section id="process" className="py-24 sm:py-32 px-4 sm:px-6 bg-dark-900 overflow-hidden" aria-labelledby="process-heading">
       <div className="max-w-5xl mx-auto">
         <AnimateIn>
           <div className="text-center mb-12 sm:mb-16">

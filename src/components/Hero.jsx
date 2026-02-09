@@ -64,7 +64,7 @@ export default function Hero() {
     >
       {/* Background with parallax */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/70 via-dark-900/50 to-dark-950/80 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/50 via-dark-900/30 to-dark-950/60 z-10" />
         <div 
           className="absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 opacity-100"
           data-loaded={loaded}
