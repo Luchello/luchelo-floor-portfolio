@@ -86,14 +86,14 @@ export default function Hero() {
       <div className="relative z-20 text-center px-4 sm:px-6 max-w-4xl mx-auto">
         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 sm:px-5 py-2 mb-6 sm:mb-8">
           <div className="w-2 h-2 bg-accent rounded-full animate-pulse motion-reduce:animate-none" aria-hidden="true" />
-          <span className="text-cream-300 text-xs sm:text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
+          <span className="text-cream-100 text-xs sm:text-sm font-semibold tracking-wide drop-shadow-md">바닥미장 전문 시공업체</span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent leading-tight mb-4 sm:mb-6 tracking-tight hero-text-shadow drop-shadow-lg">
           대성몰탈
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-cream-200/90 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-light hero-text-shadow tracking-widest">
+        <p className="text-base sm:text-lg md:text-xl text-cream-100/95 max-w-xl mx-auto mb-2 sm:mb-3 leading-relaxed font-normal hero-text-shadow tracking-widest drop-shadow-md">
           방통 <span className="text-accent">·</span> 재물 <span className="text-accent">·</span> 바닥미장
         </p>
         <p className="text-sm sm:text-base text-cream-400/50 mb-8 sm:mb-12">
