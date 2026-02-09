@@ -64,7 +64,7 @@ export default function Hero() {
     >
       {/* Background with parallax */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/50 via-dark-900/30 to-dark-950/60 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/40 via-dark-900/15 to-dark-950/50 z-10" />
         <div 
           className="absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 opacity-100"
           data-loaded={loaded}
@@ -73,7 +73,7 @@ export default function Hero() {
           <img
             src="./photos/mountain-trowel.webp"
             alt="산 배경에서 파워트라웰로 바닥미장 마감 작업을 진행하는 현장"
-            className="absolute inset-0 w-full h-[120%] object-cover"
+            className="absolute inset-0 w-full h-[120%] object-cover brightness-125 contrast-105"
             loading="eager"
             fetchpriority="high"
             decoding="async"
@@ -89,7 +89,7 @@ export default function Hero() {
           <span className="text-cream-300 text-xs sm:text-sm font-medium tracking-wide">바닥미장 전문 시공업체</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-white via-accent/80 to-white bg-clip-text text-transparent leading-tight mb-4 sm:mb-6 tracking-tight hero-text-shadow">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-white via-accent to-white bg-clip-text text-transparent leading-tight mb-4 sm:mb-6 tracking-tight hero-text-shadow drop-shadow-lg">
           대성몰탈
         </h1>
 
