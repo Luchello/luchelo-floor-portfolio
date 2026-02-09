@@ -21,10 +21,10 @@ export default function About() {
         </AnimateIn>
 
         <AnimateIn delay={100}>
-          <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-sm border border-cream-200/80 mb-10 sm:mb-12">
+          <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-md border border-cream-200/80 mb-10 sm:mb-12">
             <div className="md:flex md:items-center">
-              <div className="md:w-2/5">
-                <img src="./photos/hanok-trowel.webp" alt="시공 현장 사진" className="w-full h-full object-cover min-h-[250px]" />
+              <div className="md:w-2/5 overflow-hidden group">
+                <img src="./photos/hanok-trowel.webp" alt="시공 현장 사진" className="w-full h-full object-cover min-h-[250px] group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6 sm:p-8 md:p-12 md:w-3/5">
                 <div className="space-y-5 text-dark-600 leading-[1.8] text-base sm:text-lg text-left max-w-2xl text-dark-700">
@@ -41,7 +41,7 @@ export default function About() {
                     그래서 저희는 직접 가서 보고, 필요한 공법과 재료를 말씀드려요.
                     괜히 과하게 잡거나 빼먹는 일 없이, 딱 필요한 만큼만 안내드립니다.
                   </p>
-                  <p className="text-accent font-semibold pt-2">
+                  <p className="text-accent font-semibold pt-2 text-lg font-medium border-l-4 border-accent pl-4">
                     현장에서 직접 뵙겠습니다.
                   </p>
                 </div>
