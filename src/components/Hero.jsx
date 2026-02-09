@@ -64,7 +64,7 @@ export default function Hero() {
     >
       {/* Background with parallax */}
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/40 via-dark-900/15 to-dark-950/50 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/40 z-10" />
         <div 
           className="absolute inset-0 transition-opacity duration-1000 motion-reduce:duration-0 opacity-100"
           data-loaded={loaded}
@@ -73,7 +73,7 @@ export default function Hero() {
           <img
             src="./photos/mountain-trowel.webp"
             alt="산 배경에서 파워트라웰로 바닥미장 마감 작업을 진행하는 현장"
-            className="absolute inset-0 w-full h-[120%] object-cover brightness-125 contrast-105"
+            className="absolute inset-0 w-full h-[120%] object-cover brightness-150 contrast-110 saturate-110"
             loading="eager"
             fetchpriority="high"
             decoding="async"
