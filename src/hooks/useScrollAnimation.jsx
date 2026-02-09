@@ -5,9 +5,16 @@ import useReducedMotion from './useReducedMotion'
 export function useScrollAnimation(options = {}) {
   const { threshold = 0.1, rootMargin = '0px 0px -60px 0px' } = options
   const ref = useRef()
-  const [isVisible, setIsVisible] = useState(false)
+  // Start visible if no IntersectionObserver (SSR/headless) or reduced motion
+  const [isVisible, setIsVisible] = useState(
+    () => typeof window === 'undefined' || !('IntersectionObserver' in window)
+  )
 
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      setIsVisible(true)
+      return
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
