@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import useReducedMotion from './useReducedMotion'
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useScrollAnimation(options = {}) {
   const { threshold = 0.1, rootMargin = '0px 0px -60px 0px' } = options
   const ref = useRef()

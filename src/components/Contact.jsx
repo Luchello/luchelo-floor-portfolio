@@ -48,7 +48,8 @@ export default function Contact() {
         document.body.style.overflow = originalStyle
       }
     } else {
-      setIsVisible(false)
+      // Using requestAnimationFrame to avoid synchronous setState in effect
+      requestAnimationFrame(() => setIsVisible(false))
     }
   }, [formState])
 

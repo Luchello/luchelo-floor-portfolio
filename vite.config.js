@@ -5,6 +5,7 @@ import copyWebpOnly from './.vite-copy-webp.js'
 
 export default defineConfig({
   plugins: [react(), tailwindcss(), copyWebpOnly()],
+  // eslint-disable-next-line no-undef
   base: process.env.GITHUB_PAGES ? '/luchelo-floor-portfolio/' : '/',
   server: {
     host: '0.0.0.0',

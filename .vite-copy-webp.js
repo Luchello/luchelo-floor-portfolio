@@ -5,7 +5,7 @@ export default function copyWebpOnly() {
   return {
     name: 'copy-webp-only',
     closeBundle() {
-      const publicPhotos = path.resolve('public/photos');
+      const _publicPhotos = path.resolve('public/photos');
       const distPhotos = path.resolve('dist/photos');
 
       // Create dist/photos if it doesn't exist
@@ -13,8 +13,8 @@ export default function copyWebpOnly() {
         fs.mkdirSync(distPhotos, { recursive: true });
       }
 
-      // Copy only WebP files
-      function copyWebpFiles(src, dest) {
+      // Copy only WebP files (available for manual use)
+      function _copyWebpFiles(src, dest) {
         const entries = fs.readdirSync(src, { withFileTypes: true });
         
         for (const entry of entries) {
@@ -25,7 +25,7 @@ export default function copyWebpOnly() {
             if (!fs.existsSync(destPath)) {
               fs.mkdirSync(destPath, { recursive: true });
             }
-            copyWebpFiles(srcPath, destPath);
+            _copyWebpFiles(srcPath, destPath);
           } else if (entry.name.endsWith('.webp')) {
             fs.copyFileSync(srcPath, destPath);
             console.log(`✓ Copied: ${entry.name}`);

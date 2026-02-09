@@ -10,7 +10,7 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
   // Force WebP - always convert .jpg to .webp
   const webpSrc = src.replace('.jpg', '.webp')
   const thumbnailWebp = src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp')
-  const fallbackSrc = webpSrc // Use WebP as primary, no JPG fallback needed
+  const _fallbackSrc = webpSrc // Use WebP as primary, no JPG fallback needed
 
   useEffect(() => {
     if (eager) return // Skip observer for eager images
