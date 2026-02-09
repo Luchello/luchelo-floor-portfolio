@@ -43,7 +43,6 @@ function Counter({ value, suffix, prefix, label }) {
 
     const duration = 1500 // ms
     const steps = 60
-    const _stepValue = value / steps
     const stepTime = duration / steps
     let currentStep = 0
 
