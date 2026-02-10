@@ -106,10 +106,18 @@ const projects = [
 
 const categories = ['전체', '방통', '재물']
 
+// Calculate category counts
+const categoryCounts = {
+  '전체': projects.length,
+  '방통': projects.filter(p => p.category === '방통').length,
+  '재물': projects.filter(p => p.category === '재물').length,
+}
+
 export default function Portfolio() {
   const [active, setActive] = useState('전체')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
+  const [failedImages, setFailedImages] = useState(new Set())
 
   const filtered = active === '전체'
     ? projects
@@ -121,6 +129,10 @@ export default function Portfolio() {
       setLightboxIndex(index)
       setLightboxOpen(true)
     }
+  }
+
+  const handleImageError = (projectId) => {
+    setFailedImages(prev => new Set([...prev, projectId]))
   }
 
   return (
@@ -153,14 +165,14 @@ export default function Portfolio() {
                     : 'bg-cream-100 text-dark-600 hover:bg-cream-200 hover:text-dark-900 hover:shadow-md'
                 }`}
               >
-                {cat}
+                {cat} ({categoryCounts[cat]})
               </button>
             ))}
           </div>
         </AnimateIn>
 
         <div id="portfolio-grid" role="tabpanel">
-          <div className="grid gap-5 sm:gap-6" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {filtered.map((project, i) => (
               <AnimateIn key={project.id} delay={i * 80}>
                 <article
@@ -181,9 +193,19 @@ export default function Portfolio() {
                       src={project.photo}
                       alt={`${project.title} - ${project.category} 작업 현장`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={() => handleImageError(project.id)}
                     />
+                    {/* Fallback placeholder when image fails to load */}
+                    {failedImages.has(project.id) && (
+                      <div className="absolute inset-0 bg-accent flex items-center justify-center">
+                        <svg className="w-16 h-16 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                    )}
                     {/* Always-visible gradient + caption */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950/80 via-transparent to-transparent" aria-hidden="true" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-dark-950/90 via-dark-900/50 to-transparent" aria-hidden="true" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
                       <div className="flex items-center gap-2 mb-2 flex-wrap">
                         <span className="bg-accent text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
