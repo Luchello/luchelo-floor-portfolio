@@ -176,7 +176,7 @@ export default function Portfolio() {
             {filtered.map((project, i) => (
               <AnimateIn key={project.id} delay={i * 80}>
                 <article
-                  className="group relative rounded-xl overflow-hidden cursor-pointer"
+                  className={`group relative rounded-xl overflow-hidden cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300 ${project.featured && i === 0 ? 'lg:col-span-2' : ''}`}
                   onClick={() => openLightbox(project.id)}
                   role="button"
                   tabIndex={0}
