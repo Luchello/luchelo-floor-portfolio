@@ -7,10 +7,10 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
   const ref = useRef()
   const prefersReducedMotion = useReducedMotion()
 
-  // Force WebP - always convert .jpg to .webp
+  // Prefer WebP when available, but keep original src as fallback
   const webpSrc = src.replace('.jpg', '.webp')
   const thumbnailWebp = src.replace('/photos/', '/photos/thumbs/').replace('.jpg', '.webp')
-  const _fallbackSrc = webpSrc // Use WebP as primary, no JPG fallback needed
+  const fallbackSrc = src
 
   useEffect(() => {
     if (eager) return // Skip observer for eager images
@@ -69,7 +69,7 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
                 sizes="(max-width: 640px) 50vw, 33vw"
               />
               <img
-                src={webpSrc}
+                src={fallbackSrc}
                 alt={alt}
                 width="800"
                 height="600"
@@ -80,10 +80,10 @@ export default function LazyImage({ src, alt, className = '', onClick, thumbnail
             </>
           ) : (
             <>
-              {/* Full-size mode: just use full WebP */}
+              {/* Full-size mode: prefer WebP, fallback to original image */}
               <source srcSet={webpSrc} type="image/webp" />
               <img
-                src={webpSrc}
+                src={fallbackSrc}
                 alt={alt}
                 width="800"
                 height="600"

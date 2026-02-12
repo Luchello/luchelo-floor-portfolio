@@ -102,6 +102,32 @@ const projects = [
     location: '충남 당진',
     area: '1,200㎡',
   },
+  {
+    id: 12,
+    title: '대전 리모델링 바닥 정리 1',
+    category: '방통',
+    photo: './photos/daejeon-remodel-floor-1.jpg',
+    story: '대전 리모델링 현장에서 바닥 수평을 새로 잡은 작업입니다. 창으로 들어오는 빛까지 반사될 정도로 면을 고르게 정리했습니다.',
+    location: '대전',
+    area: '실내 리모델링',
+  },
+  {
+    id: 13,
+    title: '대전 리모델링 바닥 정리 2',
+    category: '방통',
+    photo: './photos/daejeon-remodel-floor-2.jpg',
+    story: '마감 직후 모습입니다. 전체 레벨을 맞추고 들뜸 없이 깔끔하게 정리해 다음 공정이 바로 들어갈 수 있게 준비했습니다.',
+    location: '대전',
+    area: '실내 리모델링',
+  },
+  {
+    id: 14,
+    title: '대전 리모델링 바닥 정리 3',
+    category: '방통',
+    photo: './photos/daejeon-remodel-floor-3.jpg',
+    location: '대전',
+    area: '실내 리모델링',
+  },
 ]
 
 const categories = ['전체', '방통', '재물']
